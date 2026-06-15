@@ -132,6 +132,50 @@ body{background:var(--s0);color:var(--t0);font-family:var(--ff-body);overflow-x:
 .pc-dir.buy{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);color:#4ade80}
 .pc-dir.sell{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.18);color:#f87171}
 
+/* ══ TIMEFRAME BAR ══ */
+.tf-bar{display:flex;align-items:center;gap:3px;padding:5px 8px;background:rgba(0,0,0,.85);border-bottom:1px solid rgba(255,255,255,.06);position:absolute;top:0;left:0;right:0;z-index:20;backdrop-filter:blur(6px)}
+.tf-btn{font-family:var(--ff-mono);font-size:.56rem;font-weight:700;padding:3px 9px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:var(--t3);cursor:pointer;border-radius:3px;transition:all .15s;letter-spacing:.5px}
+.tf-btn:hover{border-color:rgba(201,151,42,.4);color:var(--g1);background:rgba(201,151,42,.06)}
+.tf-btn.active{background:rgba(201,151,42,.12);border-color:var(--g2);color:var(--g0);box-shadow:0 0 8px rgba(201,151,42,.2)}
+.tf-sep{width:1px;height:14px;background:rgba(255,255,255,.07);margin:0 3px}
+.tf-live{display:flex;align-items:center;gap:4px;margin-left:auto;font-size:.48rem;font-family:var(--ff-mono);color:var(--t3)}
+.tf-live-dot{width:5px;height:5px;border-radius:50%;background:var(--grn);box-shadow:0 0 5px var(--grn);animation:pp 1.4s ease-in-out infinite}
+
+/* ══ IFAI OVERLAY PANEL (floats over chart) ══ */
+.chart-ifai-overlay{position:absolute;top:36px;right:8px;z-index:15;width:168px;background:rgba(0,0,0,.88);border:1px solid rgba(168,85,247,.3);border-radius:5px;backdrop-filter:blur(12px);overflow:hidden;pointer-events:none}
+.cio-header{display:flex;align-items:center;gap:5px;padding:5px 8px;background:linear-gradient(90deg,rgba(88,28,135,.4),rgba(0,0,0,.3));border-bottom:1px solid rgba(168,85,247,.18)}
+.cio-pulse{width:5px;height:5px;border-radius:50%;background:#a855f7;box-shadow:0 0 5px #a855f7;animation:pp 1.4s ease-in-out infinite;flex-shrink:0}
+.cio-title{font-size:.44rem;font-weight:700;letter-spacing:2px;color:rgba(192,132,252,.9);text-transform:uppercase}
+.cio-body{padding:6px 8px;display:flex;flex-direction:column;gap:4px}
+.cio-verdict{font-family:var(--ff-head);font-size:.82rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;line-height:1}
+.cio-verdict.buy{color:#4ade80;text-shadow:0 0 12px rgba(34,197,94,.5)}
+.cio-verdict.sell{color:#f87171;text-shadow:0 0 12px rgba(239,68,68,.5)}
+.cio-verdict.watch{color:var(--g1);text-shadow:0 0 12px rgba(240,192,74,.4)}
+.cio-score{font-size:.44rem;color:var(--t3);font-family:var(--ff-mono);margin-top:1px}
+.cio-stars{display:flex;gap:2px;margin-top:3px}
+.cio-star{font-size:.75rem;line-height:1}
+.cio-star.on{filter:drop-shadow(0 0 3px gold)}
+.cio-star.off{opacity:.18}
+.cio-divider{height:1px;background:rgba(255,255,255,.06);margin:3px 0}
+.cio-row{display:flex;align-items:center;justify-content:space-between}
+.cio-ind-name{font-size:.44rem;color:var(--t3);letter-spacing:.5px}
+.cio-ind-val{font-size:.48rem;font-weight:700;font-family:var(--ff-mono)}
+.cio-ind-val.buy{color:#4ade80}
+.cio-ind-val.sell{color:#f87171}
+.cio-ind-val.neu{color:var(--g1)}
+.cio-op-row{display:flex;align-items:center;justify-content:space-between;padding:4px 8px;background:rgba(201,151,42,.06);border-top:1px solid rgba(201,151,42,.12)}
+.cio-op-label{font-size:.42rem;font-weight:700;letter-spacing:1.5px;color:var(--g2);text-transform:uppercase}
+.cio-op-val{font-family:var(--ff-mono);font-size:.58rem;font-weight:700;color:var(--g1)}
+
+/* ══ BOTTOM STAR STRIP (inside chart) ══ */
+.chart-star-strip{position:absolute;bottom:0;left:0;right:0;z-index:15;padding:5px 10px;background:linear-gradient(0deg,rgba(0,0,0,.94) 60%,transparent);display:flex;align-items:center;gap:5px;flex-wrap:wrap;pointer-events:none;min-height:36px}
+.css-lbl{font-size:.42rem;font-weight:700;letter-spacing:2px;color:rgba(168,85,247,.55);text-transform:uppercase;flex-shrink:0;margin-right:2px}
+.css-chip{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:10px;border:1px solid}
+.css-chip.bull{background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.35);color:#4ade80}
+.css-chip.bear{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.3);color:#f87171}
+.css-chip.watch{background:rgba(240,192,74,.07);border-color:rgba(240,192,74,.28);color:var(--g1)}
+.css-chip span{font-size:.46rem;font-weight:700;letter-spacing:.5px}
+
 /* ══ CHART SYM TABS ══ */
 .chart-sym-bar{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-bottom:8px}
 .csym-btn{font-size:.56rem;font-weight:600;letter-spacing:.5px;padding:4px 9px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);color:var(--t2);cursor:pointer;transition:all .15s;font-family:var(--ff-body);border-radius:var(--r)}
@@ -589,26 +633,48 @@ body{background:var(--s0);color:var(--t0);font-family:var(--ff-body);overflow-x:
 
       <!-- FREE CHART CONTENT -->
       <div class="dash-content active" id="dc-free">
-        <div class="chart-zone" id="chartZone">
-          <div id="dashChart" class="chart-inner"></div>
-          <!-- OP label top-left -->
-          <div class="chart-free-label" id="chartFreeLabel">
+        <div class="chart-zone" id="chartZone" style="position:relative">
+          <!-- ── TIMEFRAME BAR ── -->
+          <div class="tf-bar" id="tfBarFree">
+            <button class="tf-btn" onclick="switchTF('5','tfBarFree','dashChart',false)">5M</button>
+            <button class="tf-btn" onclick="switchTF('15','tfBarFree','dashChart',false)">15M</button>
+            <button class="tf-btn" onclick="switchTF('60','tfBarFree','dashChart',false)">1H</button>
+            <button class="tf-btn active" onclick="switchTF('240','tfBarFree','dashChart',false)">4H</button>
+            <button class="tf-btn" onclick="switchTF('D','tfBarFree','dashChart',false)">1D</button>
+            <div class="tf-sep"></div>
+            <button class="tf-btn" onclick="switchTF('W','tfBarFree','dashChart',false)">1W</button>
+            <div class="tf-live"><div class="tf-live-dot"></div><span id="tfLiveLbl">LIVE</span></div>
+          </div>
+          <div id="dashChart" class="chart-inner" style="padding-top:32px"></div>
+          <!-- OP label top-left (below tf bar) -->
+          <div class="chart-free-label" id="chartFreeLabel" style="top:44px">
             <div class="cfl-title">📅 Daily OP</div>
             <div class="cfl-val" id="opLabelVal" style="color:var(--grn)">—</div>
             <div class="cfl-note">Trên OP = BUY · Dưới = SELL</div>
           </div>
-        </div>
-
-        <!-- STAR SIGNALS below free chart -->
-        <div class="star-signals" id="starSignals">
-          <span class="star-signals-lbl">★ STAR SIGNALS</span>
-          <span style="font-size:.52rem;color:var(--t3);font-family:var(--ff-mono)">Đang phân tích...</span>
-        </div>
-
-        <!-- Upgrade CTA for free users -->
-        <div id="freeUpgradeCTA" style="margin-top:10px;background:linear-gradient(135deg,rgba(88,28,135,.1),rgba(0,0,0,.5));border:1px solid rgba(168,85,247,.2);padding:12px 14px;border-radius:var(--r);display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-          <div style="flex:1"><div style="font-family:var(--ff-head);font-size:.65rem;font-weight:800;color:#c084fc;letter-spacing:2px;text-transform:uppercase;margin-bottom:2px">🤖 IF AI Tab — Mở Khóa Với Ref</div><div style="font-size:.62rem;color:var(--t2)">Chart riêng full HA · RSI · MACD · ADX · BB · Stoch · ⭐ Stars hiện thẳng trên chart</div></div>
-          <button onclick="switchDashTab('ifai')" style="padding:8px 14px;background:linear-gradient(135deg,#4c1d95,#7c3aed,#a855f7);color:#fff;font-family:var(--ff-head);font-size:.58rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;border:none;border-radius:var(--r);cursor:pointer;flex-shrink:0">Xem IF AI →</button>
+          <!-- ── IF AI OVERLAY (top-right) ── -->
+          <div class="chart-ifai-overlay" id="freeIFAIOverlay" style="top:44px">
+            <div class="cio-header"><div class="cio-pulse"></div><span class="cio-title">IF AI · LIVE</span></div>
+            <div class="cio-body">
+              <div class="cio-verdict watch" id="freeOverlayVerdict">⏳ LOADING</div>
+              <div class="cio-score" id="freeOverlayScore">Đang tính toán...</div>
+              <div class="cio-stars" id="freeOverlayStars"></div>
+              <div class="cio-divider"></div>
+              <div class="cio-row"><span class="cio-ind-name">RSI</span><span class="cio-ind-val neu" id="fov-rsi">—</span></div>
+              <div class="cio-row"><span class="cio-ind-name">MACD</span><span class="cio-ind-val neu" id="fov-macd">—</span></div>
+              <div class="cio-row"><span class="cio-ind-name">ADX</span><span class="cio-ind-val neu" id="fov-adx">—</span></div>
+              <div class="cio-row"><span class="cio-ind-name">BB</span><span class="cio-ind-val neu" id="fov-bb">—</span></div>
+            </div>
+            <div class="cio-op-row">
+              <span class="cio-op-label">📅 OP</span>
+              <span class="cio-op-val" id="fov-op">—</span>
+            </div>
+          </div>
+          <!-- ── BOTTOM STAR STRIP ── -->
+          <div class="chart-star-strip" id="freeStarStrip">
+            <span class="css-lbl">★ SIGNALS</span>
+            <span style="font-size:.44rem;color:rgba(255,255,255,.2);font-family:var(--ff-mono)">Đang phân tích...</span>
+          </div>
         </div>
 
         <!-- ZALO CTA -->
@@ -636,16 +702,49 @@ body{background:var(--s0);color:var(--t0);font-family:var(--ff-body);overflow-x:
         <!-- UNLOCKED IFAI content -->
         <div id="ifaiUnlocked" style="display:none">
           <!-- IFAI Chart with studies + star overlay on bottom -->
-          <div class="ifai-chart-zone" id="ifaiChartZone">
-            <div id="ifaiChart" class="ifai-chart-inner"></div>
-            <!-- OP badge top-left on IFAI chart -->
-            <div class="ifai-op-badge" id="ifaiOpBadge">
+          <div class="ifai-chart-zone" id="ifaiChartZone" style="position:relative">
+            <!-- ── TIMEFRAME BAR ── -->
+            <div class="tf-bar" id="tfBarIFAI" style="border-color:rgba(168,85,247,.2)">
+              <button class="tf-btn" onclick="switchTF('5','tfBarIFAI','ifaiChart',true)" style="border-color:rgba(168,85,247,.18)">5M</button>
+              <button class="tf-btn" onclick="switchTF('15','tfBarIFAI','ifaiChart',true)" style="border-color:rgba(168,85,247,.18)">15M</button>
+              <button class="tf-btn" onclick="switchTF('60','tfBarIFAI','ifaiChart',true)" style="border-color:rgba(168,85,247,.18)">1H</button>
+              <button class="tf-btn active" onclick="switchTF('240','tfBarIFAI','ifaiChart',true)" style="border-color:rgba(168,85,247,.18)">4H</button>
+              <button class="tf-btn" onclick="switchTF('D','tfBarIFAI','ifaiChart',true)" style="border-color:rgba(168,85,247,.18)">1D</button>
+              <div class="tf-sep"></div>
+              <button class="tf-btn" onclick="switchTF('W','tfBarIFAI','ifaiChart',true)" style="border-color:rgba(168,85,247,.18)">1W</button>
+              <div class="tf-live" style="color:rgba(192,132,252,.7)"><div class="tf-live-dot"></div><span>IFAI · LIVE</span></div>
+            </div>
+            <div id="ifaiChart" class="ifai-chart-inner" style="padding-top:32px"></div>
+            <!-- OP badge top-left on IFAI chart (below tf bar) -->
+            <div class="ifai-op-badge" id="ifaiOpBadge" style="top:44px">
               <div style="font-size:.44rem;font-weight:700;letter-spacing:2px;color:var(--g2);text-transform:uppercase;margin-bottom:2px">📅 OP</div>
               <div style="font-family:var(--ff-mono);font-size:.68rem;font-weight:700" id="ifaiOpVal" style="color:var(--g1)">—</div>
             </div>
+            <!-- ── IF AI OVERLAY (top-right) — FULL version for IFAI tab ── -->
+            <div class="chart-ifai-overlay" id="ifaiIFAIOverlay" style="top:44px;width:178px;border-color:rgba(168,85,247,.45)">
+              <div class="cio-header" style="background:linear-gradient(90deg,rgba(88,28,135,.6),rgba(0,0,0,.4))">
+                <div class="cio-pulse"></div><span class="cio-title" style="color:#c084fc">🤖 IF AI · FULL</span>
+              </div>
+              <div class="cio-body">
+                <div class="cio-verdict watch" id="ifaiOverlayVerdict">⏳ LOADING</div>
+                <div class="cio-score" id="ifaiOverlayScore">Đang tính toán...</div>
+                <div class="cio-stars" id="ifaiOverlayStars"></div>
+                <div class="cio-divider"></div>
+                <div class="cio-row"><span class="cio-ind-name">RSI</span><span class="cio-ind-val neu" id="iov-rsi">—</span></div>
+                <div class="cio-row"><span class="cio-ind-name">MACD</span><span class="cio-ind-val neu" id="iov-macd">—</span></div>
+                <div class="cio-row"><span class="cio-ind-name">ADX</span><span class="cio-ind-val neu" id="iov-adx">—</span></div>
+                <div class="cio-row"><span class="cio-ind-name">BB</span><span class="cio-ind-val neu" id="iov-bb">—</span></div>
+                <div class="cio-row"><span class="cio-ind-name">Stoch</span><span class="cio-ind-val neu" id="iov-stoch">—</span></div>
+              </div>
+              <div class="cio-op-row">
+                <span class="cio-op-label">📅 OP</span>
+                <span class="cio-op-val" id="iov-op">—</span>
+              </div>
+            </div>
             <!-- STARS overlaid on chart bottom -->
-            <div class="ifai-star-overlay" id="ifaiStarOverlay">
-              <span style="font-size:.44rem;font-weight:700;letter-spacing:2px;color:rgba(168,85,247,.6);text-transform:uppercase">★ STARS</span>
+            <div class="chart-star-strip" id="ifaiStarStrip">
+              <span class="css-lbl" style="color:rgba(192,132,252,.7)">★ IF AI STARS</span>
+              <span id="ifaiStarOverlay" style="font-size:.44rem;color:rgba(255,255,255,.2);font-family:var(--ff-mono)">Đang phân tích...</span>
             </div>
           </div>
 
@@ -791,7 +890,7 @@ body{background:var(--s0);color:var(--t0);font-family:var(--ff-body);overflow-x:
 /* ═══════════════════════════════════════════════
    STATE & CONFIG
 ═══════════════════════════════════════════════ */
-const STATE={isRef:false,currentPanel:'dashboard',currentSym:'XAUUSD',currentDashTab:'free',newsFilter:'all',newsLoaded:false,chartLoaded:false,ifaiChartLoaded:false};
+const STATE={isRef:false,currentPanel:'dashboard',currentSym:'XAUUSD',currentDashTab:'free',newsFilter:'all',newsLoaded:false,chartLoaded:false,ifaiChartLoaded:false,currentTF:'240'};
 const VALID_REFS=['XBACK-VIP2024','XBACK-PRO001','XBACK-ELITE','XBACK-TEST','ref123','REF123'];
 
 const TV_SYMBOLS={
@@ -1072,10 +1171,70 @@ function renderIFAI(){
   const d=computeIndicators(sym);
   renderStarSignals(d,sym);
   updateOPLabel(d);
+  updateChartOverlays(d,sym);
   if(STATE.isRef){
     renderIFAIStarOverlay(d,sym);
     renderIFAIDetail(d,sym);
   }
+}
+
+/* ═══ CHART OVERLAYS (new) ═══ */
+function updateChartOverlays(d,sym){
+  const modeC=d.modeClass||'watch';
+  const modeT=d.mode||'WATCH';
+  const score=Math.max(d.bullScore||0,d.bearScore||0);
+  const starCount=score>=5?3:score>=3?2:score>=1?1:0;
+  const starsHTML=Array(3).fill(0).map((_,i)=>`<span class="cio-star ${i<starCount?'on':'off'}">⭐</span>`).join('');
+  const rsiC=d.rsi>60?'buy':d.rsi<40?'sell':'neu';
+  const macdC=d.macdStat==='bull'?'buy':d.macdStat==='bear'?'sell':'neu';
+  const adxC=d.adx>25?'buy':'neu';
+  const bbC=d.bbStat==='bull'?'buy':d.bbStat==='bear'?'sell':'neu';
+  const stochC=d.stochStat==='bull'?'buy':d.stochStat==='bear'?'sell':'neu';
+  const opVal=d.op?fmtP(d.op,sym):'—';
+  const scoreLabel=`${score}/6 chỉ số hội tụ · ${modeT}`;
+
+  // Update free overlay
+  const fv=document.getElementById('freeOverlayVerdict');if(fv){fv.className='cio-verdict '+modeC;fv.textContent=modeT;}
+  const fs=document.getElementById('freeOverlayScore');if(fs)fs.textContent=scoreLabel;
+  const fst=document.getElementById('freeOverlayStars');if(fst)fst.innerHTML=starsHTML;
+  const frsi=document.getElementById('fov-rsi');if(frsi){frsi.className='cio-ind-val '+rsiC;frsi.textContent=d.rsi?d.rsi.toFixed(1):'—';}
+  const fmacd=document.getElementById('fov-macd');if(fmacd){fmacd.className='cio-ind-val '+macdC;fmacd.textContent=d.macdHist?(d.macdHist>0?'▲':' ▼')+Math.abs(d.macdHist).toFixed(2):'—';}
+  const fadx=document.getElementById('fov-adx');if(fadx){fadx.className='cio-ind-val '+adxC;fadx.textContent=d.adx?d.adx.toFixed(1):'—';}
+  const fbb=document.getElementById('fov-bb');if(fbb){fbb.className='cio-ind-val '+bbC;fbb.textContent=d.bbPct?d.bbPct.toFixed(0)+'%':'—';}
+  const fop=document.getElementById('fov-op');if(fop)fop.textContent=opVal;
+
+  // Update free star strip
+  const fstrip=document.getElementById('freeStarStrip');
+  if(fstrip) renderStarStrip(fstrip,d,sym,'css');
+
+  // Update IFAI overlays (if visible)
+  const iv=document.getElementById('ifaiOverlayVerdict');if(iv){iv.className='cio-verdict '+modeC;iv.textContent=modeT;}
+  const is=document.getElementById('ifaiOverlayScore');if(is)is.textContent=scoreLabel;
+  const ist=document.getElementById('ifaiOverlayStars');if(ist)ist.innerHTML=starsHTML;
+  const irsi=document.getElementById('iov-rsi');if(irsi){irsi.className='cio-ind-val '+rsiC;irsi.textContent=d.rsi?d.rsi.toFixed(1):'—';}
+  const imacd=document.getElementById('iov-macd');if(imacd){imacd.className='cio-ind-val '+macdC;imacd.textContent=d.macdHist?(d.macdHist>0?'▲':' ▼')+Math.abs(d.macdHist).toFixed(2):'—';}
+  const iadx=document.getElementById('iov-adx');if(iadx){iadx.className='cio-ind-val '+adxC;iadx.textContent=d.adx?d.adx.toFixed(1):'—';}
+  const ibb=document.getElementById('iov-bb');if(ibb){ibb.className='cio-ind-val '+bbC;ibb.textContent=d.bbPct?d.bbPct.toFixed(0)+'%':'—';}
+  const istoch=document.getElementById('iov-stoch');if(istoch){istoch.className='cio-ind-val '+stochC;istoch.textContent=d.stochK?d.stochK.toFixed(0):'—';}
+  const iop=document.getElementById('iov-op');if(iop)iop.textContent=opVal;
+
+  // Update IFAI star strip
+  const istrip=document.getElementById('ifaiStarStrip');
+  if(istrip) renderStarStrip(istrip,d,sym,'css');
+}
+
+function renderStarStrip(el,d,sym,pfx){
+  const modeC=d.modeClass||'watch';
+  const lbl=el.querySelector('.css-lbl')||el.querySelector('span');
+  const chips=[];
+  if(d.bullScore>=3) chips.push(`<div class="css-chip bull"><span>${'⭐'.repeat(Math.min(d.bullScore,3))} BUY · ${d.bullScore}/6</span></div>`);
+  else if(d.bearScore>=3) chips.push(`<div class="css-chip bear"><span>${'⭐'.repeat(Math.min(d.bearScore,3))} SELL · ${d.bearScore}/6</span></div>`);
+  else chips.push(`<div class="css-chip watch"><span>⏳ CHỜ · ${Math.max(d.bullScore||0,d.bearScore||0)}/6</span></div>`);
+  if(d.adx>25) chips.push(`<div class="css-chip ${modeC==='buy'?'bull':modeC==='sell'?'bear':'watch'}"><span>ADX ${d.adx.toFixed(0)}</span></div>`);
+  if(d.rsi>65) chips.push(`<div class="css-chip bear"><span>RSI ${d.rsi.toFixed(0)} OB</span></div>`);
+  else if(d.rsi<35) chips.push(`<div class="css-chip bull"><span>RSI ${d.rsi.toFixed(0)} OS</span></div>`);
+  const labelEl=el.querySelector('.css-lbl');
+  el.innerHTML=(labelEl?labelEl.outerHTML:'<span class="css-lbl">★ SIGNALS</span>')+chips.join('');
 }
 
 async function refreshAll(){
@@ -1084,6 +1243,20 @@ async function refreshAll(){
   await fetchPrices();
   renderIFAI();
   toast('✅ Cập nhật xong!');
+}
+
+/* ═══ TIMEFRAME SWITCHER ═══ */
+function switchTF(tf, barId, chartId, isIfai){
+  STATE.currentTF = tf;
+  // Update active button
+  document.querySelectorAll('#'+barId+' .tf-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  // Reload the chart with new interval
+  if(isIfai) loadIFAIChart(STATE.currentSym);
+  else loadChart(STATE.currentSym);
+  // Update live label
+  const lbl=document.getElementById('tfLiveLbl');
+  if(lbl){const map={'5':'5M','15':'15M','60':'1H','240':'4H','D':'1D','W':'1W'};lbl.textContent=(map[tf]||tf)+' · LIVE';}
 }
 
 /* ═══ CHARTS ═══ */
@@ -1098,7 +1271,7 @@ function loadChart(sym){
   c.appendChild(div);
   const s=document.createElement('script');s.src='https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';s.async=true;
   s.textContent=JSON.stringify({
-    autosize:true,symbol:TV_MAP[sym]||'FX:XAUUSD',interval:'240',
+    autosize:true,symbol:TV_MAP[sym]||'FX:XAUUSD',interval:STATE.currentTF||'240',
     timezone:'Asia/Ho_Chi_Minh',theme:'dark',style:'8',locale:'vi_VN',
     hide_top_toolbar:false,hide_legend:false,allow_symbol_change:false,
     save_image:false,isTransparent:true,
@@ -1117,7 +1290,7 @@ function loadIFAIChart(sym){
   c.appendChild(div);
   const s=document.createElement('script');s.src='https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';s.async=true;
   s.textContent=JSON.stringify({
-    autosize:true,symbol:TV_MAP[sym]||'FX:XAUUSD',interval:'240',
+    autosize:true,symbol:TV_MAP[sym]||'FX:XAUUSD',interval:STATE.currentTF||'240',
     timezone:'Asia/Ho_Chi_Minh',theme:'dark',style:'8',locale:'vi_VN',
     hide_top_toolbar:false,hide_legend:false,allow_symbol_change:false,
     save_image:false,isTransparent:true,
