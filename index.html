@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>XBack Capital — IF AI v6</title>
+<title>XBack Capital — IF AI v7</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -21,6 +21,40 @@ body{background:var(--s0);color:var(--t0);font-family:var(--ff-body);overflow-x:
 ::-webkit-scrollbar{width:3px;height:3px}
 ::-webkit-scrollbar-track{background:var(--s1)}
 ::-webkit-scrollbar-thumb{background:var(--g3);border-radius:2px}
+
+/* ══ 3D ORBS ══ */
+.orb-scene{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:50%;animation:orbFloat var(--of,8s) ease-in-out infinite var(--od,0s)}
+.orb-gold{width:180px;height:180px;top:-60px;right:-60px;
+  background:radial-gradient(ellipse at 35% 30%,rgba(255,250,180,.55) 0%,rgba(240,192,74,.35) 30%,rgba(201,151,42,.18) 60%,transparent 80%);
+  box-shadow:inset -20px -20px 40px rgba(100,60,0,.25),inset 10px 10px 30px rgba(255,240,120,.12),0 0 60px rgba(201,151,42,.18),0 0 120px rgba(201,151,42,.07);
+  filter:blur(.4px);--of:9s;--od:0s}
+.orb-gold::before{content:'';position:absolute;top:18%;left:15%;width:35%;height:22%;border-radius:50%;background:rgba(255,255,220,.45);filter:blur(6px);transform:rotate(-30deg)}
+.orb-purple{width:140px;height:140px;bottom:-40px;left:-40px;
+  background:radial-gradient(ellipse at 35% 30%,rgba(230,180,255,.45) 0%,rgba(168,85,247,.3) 30%,rgba(88,28,135,.15) 60%,transparent 80%);
+  box-shadow:inset -15px -15px 30px rgba(40,0,80,.3),inset 8px 8px 20px rgba(200,150,255,.1),0 0 50px rgba(168,85,247,.15);
+  filter:blur(.3px);--of:11s;--od:-3s}
+.orb-purple::before{content:'';position:absolute;top:15%;left:18%;width:30%;height:18%;border-radius:50%;background:rgba(220,180,255,.5);filter:blur(5px);transform:rotate(-25deg)}
+.orb-cyan{width:100px;height:100px;top:50%;left:10%;
+  background:radial-gradient(ellipse at 35% 30%,rgba(160,240,255,.45) 0%,rgba(6,182,212,.28) 35%,rgba(14,116,144,.12) 60%,transparent 80%);
+  box-shadow:inset -10px -10px 25px rgba(0,50,70,.25),inset 6px 6px 15px rgba(100,230,255,.12),0 0 40px rgba(6,182,212,.12);
+  filter:blur(.3px);--of:7s;--od:-1.5s}
+.orb-cyan::before{content:'';position:absolute;top:18%;left:20%;width:28%;height:16%;border-radius:50%;background:rgba(180,245,255,.5);filter:blur(4px)}
+.orb-red{width:80px;height:80px;top:25%;right:8%;
+  background:radial-gradient(ellipse at 35% 30%,rgba(255,200,180,.4) 0%,rgba(239,68,68,.22) 35%,rgba(127,29,29,.1) 60%,transparent 80%);
+  box-shadow:inset -8px -8px 20px rgba(80,0,0,.25),inset 5px 5px 12px rgba(255,150,130,.1),0 0 35px rgba(239,68,68,.1);
+  filter:blur(.3px);--of:6s;--od:-2s}
+.orb-red::before{content:'';position:absolute;top:18%;left:20%;width:28%;height:16%;border-radius:50%;background:rgba(255,200,190,.45);filter:blur(3px)}
+/* Outer dashboard orbs (smaller, subtle) */
+.dash-orb-wrap{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.dash-orb{position:absolute;border-radius:50%;opacity:.55;animation:orbFloat var(--of,10s) ease-in-out infinite var(--od,0s)}
+.dash-orb-g{width:260px;height:260px;top:-80px;right:-80px;
+  background:radial-gradient(ellipse at 38% 32%,rgba(255,250,160,.3) 0%,rgba(240,192,74,.18) 30%,rgba(201,151,42,.08) 60%,transparent 75%);
+  box-shadow:0 0 80px rgba(201,151,42,.08),0 0 180px rgba(201,151,42,.03);--of:12s;--od:0s}
+.dash-orb-p{width:200px;height:200px;bottom:-60px;left:-60px;
+  background:radial-gradient(ellipse at 38% 32%,rgba(200,140,255,.2) 0%,rgba(168,85,247,.12) 35%,rgba(88,28,135,.05) 60%,transparent 75%);
+  box-shadow:0 0 60px rgba(168,85,247,.07);--of:14s;--od:-4s}
+@keyframes orbFloat{0%,100%{transform:translateY(0) scale(1)}33%{transform:translateY(-18px) scale(1.03)}66%{transform:translateY(8px) scale(.97)}}
 
 /* ══ INTRO ══ */
 #introScreen{position:fixed;inset:0;z-index:9999;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
@@ -62,6 +96,1508 @@ body{background:var(--s0);color:var(--t0);font-family:var(--ff-body);overflow-x:
 /* ══ APP LAYOUT ══ */
 .app{display:none;min-height:100vh}
 .sidebar{width:210px;flex-shrink:0;background:var(--s1);border-right:1px solid rgba(201,151,42,.09);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:200;transition:transform .25s}
+.sb-logo{padding:12px 12px 9px;border-bottom:1px solid rgba(201,151,42,.07);cursor:pointer}
+.sb-logo-wrap{display:flex;align-items:center;gap:9px}
+.sb-logo-icon{font-family:var(--ff-head);font-weight:900;font-size:1rem;background:linear-gradient(135deg,#fff,var(--g0) 40%,var(--g3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sb-logo-txt{font-family:var(--ff-head);font-size:.92rem;font-weight:900;letter-spacing:4px;background:linear-gradient(110deg,#fff,var(--g0) 30%,var(--g2) 60%,#fff 85%,var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.sb-logo-sub{font-size:.43rem;letter-spacing:2.5px;color:rgba(240,192,74,.3);text-transform:uppercase;margin-top:2px}
+.sb-user{padding:6px 10px;margin:7px 8px;background:rgba(201,151,42,.04);border:1px solid rgba(201,151,42,.1);border-radius:var(--r);display:flex;align-items:center;gap:7px}
+.sb-user-dot{width:6px;height:6px;border-radius:50%;background:var(--grn);flex-shrink:0;box-shadow:0 0 5px var(--grn)}
+.sb-user-name{font-size:.63rem;font-weight:600;color:var(--g1)}
+.sb-user-badge{font-size:.44rem;font-weight:700;letter-spacing:2px;color:var(--g2);text-transform:uppercase;margin-left:auto;padding:2px 5px;border:1px solid rgba(201,151,42,.2);border-radius:2px}
+.sb-user-badge.free{color:var(--t3);border-color:rgba(255,255,255,.08)}
+.sb-nav{flex:1;overflow-y:auto;padding:5px 0}
+.sb-section{font-size:.43rem;font-weight:700;letter-spacing:3px;color:var(--t3);padding:9px 13px 3px;text-transform:uppercase}
+.sb-item{display:flex;align-items:center;gap:7px;padding:8px 13px;cursor:pointer;border-left:2px solid transparent;transition:all .15s;text-decoration:none;color:var(--t2)}
+.sb-item:hover,.sb-item.active{color:var(--g1);background:rgba(201,151,42,.04);border-left-color:var(--g2)}
+.sb-item.active{color:var(--g0);border-left-color:var(--g1)}
+.sb-item-ico{font-size:.8rem;width:15px;text-align:center;flex-shrink:0}
+.sb-item-lbl{font-size:.65rem;font-weight:500}
+.sb-item-badge{margin-left:auto;font-size:.42rem;font-weight:700;letter-spacing:1.5px;padding:2px 5px;border-radius:2px;text-transform:uppercase}
+.sb-item-badge.new{background:rgba(34,197,94,.09);border:1px solid rgba(34,197,94,.28);color:#4ade80}
+.sb-item-badge.lock{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.22);color:#f87171}
+.sb-item-badge.ai{background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.3);color:#c084fc}
+.sb-bottom{padding:7px;border-top:1px solid rgba(201,151,42,.06)}
+.sb-ref-box{background:linear-gradient(135deg,rgba(201,151,42,.08),rgba(201,151,42,.02));border:1px solid rgba(201,151,42,.18);padding:8px 10px;cursor:pointer;transition:all .2s;border-radius:var(--r)}
+.sb-ref-box:hover{border-color:var(--g1)}
+.sb-ref-title{font-size:.53rem;font-weight:700;letter-spacing:2px;color:var(--g2);text-transform:uppercase;margin-bottom:2px}
+.sb-ref-desc{font-size:.55rem;color:var(--t2);line-height:1.4}
+.main{margin-left:210px;flex:1;min-height:100vh;display:flex;flex-direction:column}
+
+/* ══ TOPBAR ══ */
+.topbar{position:sticky;top:0;z-index:150;background:rgba(0,0,0,.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,151,42,.07);display:flex;align-items:center;height:44px;padding:0 10px;gap:0}
+.topbar-ticker{flex:1;overflow:hidden;white-space:nowrap}
+.ticker-inner{display:inline-flex;animation:tickRun 48s linear infinite}
+.ticker-inner:hover{animation-play-state:paused}
+.tick-item{display:inline-flex;align-items:center;gap:5px;padding:0 10px;border-right:1px solid rgba(255,255,255,.04)}
+.tick-sym{font-family:var(--ff-mono);font-size:.6rem;font-weight:700;color:rgba(255,255,255,.7)}
+.tick-price{font-family:var(--ff-mono);font-size:.6rem;color:var(--g1)}
+.tick-chg{font-size:.56rem;font-weight:700}
+.tick-chg.up{color:var(--grn)}.tick-chg.dn{color:var(--red)}
+@keyframes tickRun{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.topbar-actions{display:flex;align-items:center;gap:5px;padding-left:8px;border-left:1px solid rgba(255,255,255,.04)}
+.tb-btn{background:none;border:1px solid rgba(201,151,42,.2);color:var(--g1);font-family:var(--ff-body);font-size:.56rem;font-weight:600;letter-spacing:1px;padding:4px 9px;cursor:pointer;text-transform:uppercase;transition:all .18s;border-radius:var(--r)}
+.tb-btn:hover{border-color:var(--g1);background:rgba(201,151,42,.06)}
+.tb-btn.primary{background:linear-gradient(135deg,var(--g3),var(--g2),var(--g1));color:#000;border:none;font-weight:700}
+.ham-mob{display:none;background:none;border:none;cursor:pointer;padding:5px;flex-direction:column;gap:4px}
+.ham-mob span{display:block;width:17px;height:2px;background:var(--g1);border-radius:1px}
+
+/* ══ PANELS ══ */
+.panel{display:none;flex:1;padding:12px;animation:panIn .2s ease}
+.panel.active{display:block}
+@keyframes panIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.panel-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;gap:8px;flex-wrap:wrap}
+.panel-title{font-family:var(--ff-head);font-size:.88rem;font-weight:900;letter-spacing:2px;text-transform:uppercase}
+.panel-title span{background:linear-gradient(135deg,var(--g0),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.panel-sub{font-size:.6rem;color:var(--t2);margin-top:2px;line-height:1.5}
+.sec-div{display:flex;align-items:center;gap:8px;margin:10px 0 8px}
+.sec-div-line{flex:1;height:1px;background:rgba(255,255,255,.04)}
+.sec-div-lbl{font-size:.48rem;font-weight:700;letter-spacing:3px;color:var(--t3);text-transform:uppercase;white-space:nowrap}
+.sec-div-lbl.gold{color:var(--g2)}.sec-div-lbl.ai{color:rgba(192,132,252,.6)}.sec-div-lbl.red{color:rgba(239,68,68,.7)}
+
+/* ══ LIVE PRICE STRIP ══ */
+.price-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:var(--r);overflow:hidden;margin-bottom:10px}
+.price-cell{background:var(--s2);padding:7px 9px;display:flex;align-items:center;gap:7px}
+.pc-sym{font-family:var(--ff-mono);font-size:.58rem;font-weight:700;color:var(--t0);min-width:50px}
+.pc-val{font-family:var(--ff-mono);font-size:.75rem;font-weight:700;color:var(--g1);flex:1}
+.pc-chg{font-size:.55rem;font-weight:700}
+.pc-chg.up{color:var(--grn)}.pc-chg.dn{color:var(--red)}
+.pc-dir{font-size:.48rem;font-weight:700;padding:1px 5px;border-radius:2px;text-transform:uppercase;letter-spacing:1px}
+.pc-dir.buy{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);color:#4ade80}
+.pc-dir.sell{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.18);color:#f87171}
+
+/* ══ TIMEFRAME BAR ══ */
+.tf-bar{display:flex;align-items:center;gap:3px;padding:5px 8px;background:rgba(0,0,0,.85);border-bottom:1px solid rgba(255,255,255,.06);position:absolute;top:0;left:0;right:0;z-index:20;backdrop-filter:blur(6px)}
+.tf-btn{font-family:var(--ff-mono);font-size:.56rem;font-weight:700;padding:3px 9px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:var(--t3);cursor:pointer;border-radius:3px;transition:all .15s;letter-spacing:.5px}
+.tf-btn:hover{border-color:rgba(201,151,42,.4);color:var(--g1);background:rgba(201,151,42,.06)}
+.tf-btn.active{background:rgba(201,151,42,.12);border-color:var(--g2);color:var(--g0);box-shadow:0 0 8px rgba(201,151,42,.2)}
+.tf-sep{width:1px;height:14px;background:rgba(255,255,255,.07);margin:0 3px}
+.tf-live{display:flex;align-items:center;gap:4px;margin-left:auto;font-size:.48rem;font-family:var(--ff-mono);color:var(--t3)}
+.tf-live-dot{width:5px;height:5px;border-radius:50%;background:var(--grn);box-shadow:0 0 5px var(--grn);animation:pp 1.4s ease-in-out infinite}
+
+/* ══ IFAI OVERLAY PANEL (floats over chart) ══ */
+.chart-ifai-overlay{position:absolute;top:36px;right:8px;z-index:15;width:168px;background:rgba(0,0,0,.88);border:1px solid rgba(168,85,247,.3);border-radius:5px;backdrop-filter:blur(12px);overflow:hidden;pointer-events:none}
+.cio-header{display:flex;align-items:center;gap:5px;padding:5px 8px;background:linear-gradient(90deg,rgba(88,28,135,.4),rgba(0,0,0,.3));border-bottom:1px solid rgba(168,85,247,.18)}
+.cio-pulse{width:5px;height:5px;border-radius:50%;background:#a855f7;box-shadow:0 0 5px #a855f7;animation:pp 1.4s ease-in-out infinite;flex-shrink:0}
+.cio-title{font-size:.44rem;font-weight:700;letter-spacing:2px;color:rgba(192,132,252,.9);text-transform:uppercase}
+.cio-body{padding:6px 8px;display:flex;flex-direction:column;gap:4px}
+.cio-verdict{font-family:var(--ff-head);font-size:.82rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;line-height:1}
+.cio-verdict.buy{color:#4ade80;text-shadow:0 0 12px rgba(34,197,94,.5)}
+.cio-verdict.sell{color:#f87171;text-shadow:0 0 12px rgba(239,68,68,.5)}
+.cio-verdict.watch{color:var(--g1);text-shadow:0 0 12px rgba(240,192,74,.4)}
+.cio-score{font-size:.44rem;color:var(--t3);font-family:var(--ff-mono);margin-top:1px}
+.cio-stars{display:flex;gap:2px;margin-top:3px}
+.cio-star{font-size:.75rem;line-height:1}
+.cio-star.on{filter:drop-shadow(0 0 3px gold)}
+.cio-star.off{opacity:.18}
+.cio-divider{height:1px;background:rgba(255,255,255,.06);margin:3px 0}
+.cio-row{display:flex;align-items:center;justify-content:space-between}
+.cio-ind-name{font-size:.44rem;color:var(--t3);letter-spacing:.5px}
+.cio-ind-val{font-size:.48rem;font-weight:700;font-family:var(--ff-mono)}
+.cio-ind-val.buy{color:#4ade80}
+.cio-ind-val.sell{color:#f87171}
+.cio-ind-val.neu{color:var(--g1)}
+.cio-op-row{display:flex;align-items:center;justify-content:space-between;padding:4px 8px;background:rgba(201,151,42,.06);border-top:1px solid rgba(201,151,42,.12)}
+.cio-op-label{font-size:.42rem;font-weight:700;letter-spacing:1.5px;color:var(--g2);text-transform:uppercase}
+.cio-op-val{font-family:var(--ff-mono);font-size:.58rem;font-weight:700;color:var(--g1)}
+
+/* ══ BOTTOM STAR STRIP (inside chart) ══ */
+.chart-star-strip{position:absolute;bottom:0;left:0;right:0;z-index:15;padding:5px 10px;background:linear-gradient(0deg,rgba(0,0,0,.94) 60%,transparent);display:flex;align-items:center;gap:5px;flex-wrap:wrap;pointer-events:none;min-height:36px}
+.css-lbl{font-size:.42rem;font-weight:700;letter-spacing:2px;color:rgba(168,85,247,.55);text-transform:uppercase;flex-shrink:0;margin-right:2px}
+.css-chip{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:10px;border:1px solid}
+.css-chip.bull{background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.35);color:#4ade80}
+.css-chip.bear{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.3);color:#f87171}
+.css-chip.watch{background:rgba(240,192,74,.07);border-color:rgba(240,192,74,.28);color:var(--g1)}
+.css-chip span{font-size:.46rem;font-weight:700;letter-spacing:.5px}
+
+/* ══ CHART SYM TABS ══ */
+.chart-sym-bar{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-bottom:8px}
+.csym-btn{font-size:.56rem;font-weight:600;letter-spacing:.5px;padding:4px 9px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);color:var(--t2);cursor:pointer;transition:all .15s;font-family:var(--ff-body);border-radius:var(--r)}
+.csym-btn:hover,.csym-btn.active{background:rgba(201,151,42,.08);border-color:rgba(201,151,42,.3);color:var(--g1)}
+
+/* ══ CHART ZONE ══ */
+.chart-zone{position:relative;border:1px solid rgba(255,255,255,.08);border-radius:var(--r);overflow:hidden;background:var(--s1)}
+.chart-inner{height:500px;position:relative}
+
+/* ══ FREE: OP Label top-left ══ */
+.chart-free-label{position:absolute;top:8px;left:8px;z-index:10;background:rgba(0,0,0,.88);border:1px solid rgba(201,151,42,.35);border-radius:5px;padding:6px 10px;pointer-events:none;backdrop-filter:blur(8px)}
+.cfl-title{font-size:.46rem;font-weight:700;letter-spacing:2px;color:var(--g2);text-transform:uppercase;margin-bottom:2px}
+.cfl-val{font-family:var(--ff-mono);font-size:.72rem;font-weight:700}
+.cfl-note{font-size:.42rem;color:var(--t3);margin-top:1px}
+
+/* ══ STAR SIGNALS STRIP ══ */
+.star-signals{display:flex;align-items:center;gap:6px;padding:7px 10px;background:rgba(0,0,0,.9);border-top:1px solid rgba(168,85,247,.18);flex-wrap:wrap;min-height:34px}
+.star-signals-lbl{font-size:.44rem;color:var(--t3);letter-spacing:2px;text-transform:uppercase;margin-right:2px;flex-shrink:0}
+.star-chip{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:12px;border:1px solid;cursor:default}
+.star-chip.bull{background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.3);color:#4ade80}
+.star-chip.bear{background:rgba(239,68,68,.07);border-color:rgba(239,68,68,.25);color:#f87171}
+.star-chip.watch{background:rgba(240,192,74,.07);border-color:rgba(240,192,74,.25);color:var(--g1)}
+.star-chip-ico{font-size:.7rem}
+.star-chip-txt{font-size:.5rem;font-weight:700;letter-spacing:.5px}
+
+/* ══ IFAI TAB — separate full chart ══ */
+/* Tab bar inside dashboard */
+.dash-tabs{display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:10px}
+.dash-tab{padding:8px 16px;font-size:.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;color:var(--t3);border-bottom:2px solid transparent;transition:all .18s;font-family:var(--ff-head)}
+.dash-tab:hover{color:var(--t1)}
+.dash-tab.active{color:var(--g1);border-bottom-color:var(--g1)}
+.dash-tab.ai-tab{color:rgba(192,132,252,.55)}
+.dash-tab.ai-tab.active{color:#c084fc;border-bottom-color:#a855f7}
+.dash-content{display:none}
+.dash-content.active{display:block}
+
+/* ══ IFAI FULL PANEL (inside tab) ══ */
+/* Chart #2 for IFAI tab */
+.ifai-chart-zone{position:relative;border:1px solid rgba(168,85,247,.18);border-radius:var(--r);overflow:hidden;background:var(--s1);margin-bottom:10px}
+.ifai-chart-inner{height:460px;position:relative}
+
+/* Star overlay ON the IFAI chart */
+.ifai-star-overlay{position:absolute;bottom:0;left:0;right:0;z-index:10;padding:6px 10px;background:linear-gradient(0deg,rgba(0,0,0,.95) 70%,transparent);display:flex;align-items:flex-end;gap:5px;flex-wrap:wrap;pointer-events:none;min-height:42px}
+/* OP line label on IFAI chart */
+.ifai-op-badge{position:absolute;top:8px;left:8px;z-index:10;background:rgba(0,0,0,.9);border:1px solid rgba(240,192,74,.4);border-radius:4px;padding:4px 8px;pointer-events:none;backdrop-filter:blur(8px)}
+
+/* IFAI indicator grid */
+.ifai-mode-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:linear-gradient(90deg,rgba(88,28,135,.22),rgba(0,0,0,.5));border:1px solid rgba(168,85,247,.18);border-radius:var(--r);margin-bottom:8px;flex-wrap:wrap;gap:8px}
+.ifai-mode-left{display:flex;align-items:center;gap:8px}
+.ifai-pulse{width:7px;height:7px;border-radius:50%;background:#a855f7;box-shadow:0 0 8px #a855f7;animation:pp 1.4s ease-in-out infinite;flex-shrink:0}
+@keyframes pp{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.ifai-mode-title{font-family:var(--ff-head);font-size:.55rem;font-weight:900;letter-spacing:3px;background:linear-gradient(135deg,#c084fc,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-transform:uppercase}
+.mode-big{font-family:var(--ff-head);font-size:.7rem;font-weight:900;letter-spacing:2px;padding:5px 14px;border-radius:3px;border:2px solid;text-transform:uppercase}
+.mode-big.buy{background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.45);color:#4ade80;box-shadow:0 0 14px rgba(34,197,94,.1)}
+.mode-big.sell{background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.45);color:#f87171;box-shadow:0 0 14px rgba(239,68,68,.1)}
+.mode-big.watch{background:rgba(240,192,74,.08);border-color:rgba(240,192,74,.3);color:var(--g1)}
+.ifai-mode-score{font-family:var(--ff-mono);font-size:.56rem;color:var(--t2)}
+
+/* Indicator 4-grid */
+.ind4-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(168,85,247,.07);border:1px solid rgba(168,85,247,.1);border-radius:var(--r);overflow:hidden;margin-bottom:8px}
+.ind4{background:var(--s1);padding:11px;position:relative;overflow:hidden;transition:background .15s}
+.ind4:hover{background:rgba(88,28,135,.12)}
+.ind4-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
+.ind4-name{font-size:.5rem;font-weight:700;letter-spacing:2px;color:rgba(192,132,252,.55);text-transform:uppercase}
+.ind4-stat{font-size:.5rem;font-weight:700;padding:2px 5px;border-radius:2px;letter-spacing:1px;text-transform:uppercase}
+.ind4-stat.bull{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.22);color:#4ade80}
+.ind4-stat.bear{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);color:#f87171}
+.ind4-stat.neut{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:var(--t2)}
+.ind4-val{font-family:var(--ff-mono);font-size:1.05rem;font-weight:700;line-height:1;margin-bottom:3px}
+.ind4-val.buy-c{color:#4ade80}.ind4-val.sell-c{color:#f87171}.ind4-val.neu-c{color:var(--g1)}
+.ind4-detail{font-size:.54rem;color:var(--t2);line-height:1.5;margin-top:2px}
+.ind4-sub{font-size:.48rem;color:var(--t3);margin-top:3px;line-height:1.4}
+.ind-bar{height:3px;background:rgba(255,255,255,.06);border-radius:2px;margin-top:6px;overflow:hidden}
+.ind-bar-fill{height:100%;border-radius:2px;transition:width .5s}
+.ind-bar-fill.buy-bar{background:linear-gradient(90deg,#16a34a,#4ade80)}
+.ind-bar-fill.sell-bar{background:linear-gradient(90deg,#b91c1c,#f87171)}
+.ind-bar-fill.neu-bar{background:linear-gradient(90deg,var(--g3),var(--g1))}
+
+/* Extra indicators (BB + Stoch) */
+.extra-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(168,85,247,.07);border:1px solid rgba(168,85,247,.1);border-radius:var(--r);overflow:hidden;margin-bottom:8px}
+.extra-ind{background:var(--s1);padding:9px 11px;display:flex;align-items:center;gap:10px}
+.extra-ico{font-size:.95rem;flex-shrink:0;width:24px;text-align:center}
+.extra-body{flex:1}
+.extra-name{font-size:.48rem;font-weight:700;letter-spacing:2px;color:rgba(192,132,252,.5);text-transform:uppercase;margin-bottom:2px}
+.extra-val{font-family:var(--ff-mono);font-size:.78rem;font-weight:700;line-height:1}
+.extra-detail{font-size:.53rem;color:var(--t2);margin-top:1px}
+.extra-badge{font-size:.48rem;font-weight:700;padding:2px 6px;border-radius:2px;letter-spacing:1px;text-transform:uppercase;flex-shrink:0}
+.extra-badge.bull{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.22);color:#4ade80}
+.extra-badge.bear{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);color:#f87171}
+.extra-badge.neut{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:var(--t2)}
+
+/* Reversal cards */
+.rev-section{padding:10px 12px;border:1px solid rgba(168,85,247,.1);border-radius:var(--r);background:rgba(0,0,0,.2);margin-bottom:8px}
+.rev-section-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.rev-card{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.07);padding:9px;border-radius:var(--r);position:relative;overflow:hidden}
+.rev-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.rev-card.bull::before{background:linear-gradient(90deg,transparent,var(--grn),transparent)}
+.rev-card.bear::before{background:linear-gradient(90deg,transparent,var(--red),transparent)}
+.rev-lbl{font-size:.46rem;font-weight:700;letter-spacing:2px;color:var(--t3);text-transform:uppercase;margin-bottom:3px}
+.rev-pat{font-size:.68rem;font-weight:700;margin-bottom:2px}
+.rev-pat.bull{color:#4ade80}.rev-pat.bear{color:#f87171}
+.rev-detail{font-size:.53rem;color:var(--t2);margin-top:2px;line-height:1.4}
+.rev-entry{font-size:.54rem;font-weight:700;margin-top:4px;padding:2px 6px;border-radius:2px;display:inline-block}
+.rev-entry.bull{background:rgba(34,197,94,.1);color:#4ade80}
+.rev-entry.bear{background:rgba(239,68,68,.08);color:#f87171}
+
+/* Summary bar */
+.sum-bar{padding:9px 12px;border:1px solid rgba(168,85,247,.1);border-radius:var(--r);background:rgba(0,0,0,.2);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sum-ring{position:relative;width:48px;height:48px;flex-shrink:0}
+.sum-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.sum-num{font-family:var(--ff-mono);font-size:.85rem;font-weight:700;line-height:1}
+.sum-denom{font-size:.4rem;color:var(--t3);letter-spacing:1px}
+.sum-text{flex:1}
+.sum-verdict{font-family:var(--ff-head);font-size:.78rem;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;line-height:1.2}
+.sum-verdict.buy{color:#4ade80}.sum-verdict.sell{color:#f87171}.sum-verdict.watch{color:var(--g1)}
+.sum-reason{font-size:.58rem;color:var(--t2);margin-top:2px;font-family:var(--ff-mono);line-height:1.5}
+.sum-time{font-size:.48rem;color:var(--t3);font-family:var(--ff-mono);flex-shrink:0;text-align:right}
+
+/* ══ FREE WALL ══ */
+.ref-required-wall{background:rgba(88,28,135,.06);border:1px solid rgba(168,85,247,.15);padding:18px;border-radius:var(--r);text-align:center;margin-top:10px}
+.rr-title{font-family:var(--ff-head);font-size:.75rem;font-weight:800;color:var(--t0);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.rr-desc{font-size:.64rem;color:var(--t2);margin-bottom:12px;line-height:1.6}
+
+/* ══ CALL GROUP ══ */
+.call-list{display:flex;flex-direction:column;gap:7px}
+.call-card{background:var(--s2);border:1px solid rgba(255,255,255,.06);border-radius:var(--r);overflow:hidden;position:relative}
+.call-bar{position:absolute;top:0;left:0;bottom:0;width:3px}
+.call-bar.buy{background:var(--grn)}.call-bar.sell{background:var(--red)}
+.call-inner{padding:9px 11px 9px 15px}
+.call-head{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+.call-sym{font-family:var(--ff-mono);font-size:.82rem;font-weight:700}
+.call-dir{font-size:.53rem;font-weight:700;padding:2px 6px;border-radius:2px;text-transform:uppercase;letter-spacing:1px}
+.call-dir.buy{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#4ade80}
+.call-dir.sell{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.22);color:#f87171}
+.call-time{margin-left:auto;font-size:.5rem;color:var(--t3);font-family:var(--ff-mono)}
+.call-result{font-size:.54rem;font-weight:700}
+.call-result.win{color:var(--grn)}.call-result.sl{color:var(--red)}
+.call-levels{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.cll{text-align:center;padding:4px 2px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:2px}
+.cll-lbl{font-size:.42rem;color:var(--t3);text-transform:uppercase;letter-spacing:1px;display:block}
+.cll-val{font-family:var(--ff-mono);font-size:.64rem;font-weight:700;display:block;margin-top:1px}
+.call-delay-note{background:rgba(240,192,74,.04);border:1px solid rgba(240,192,74,.12);padding:7px 10px;border-radius:var(--r);font-size:.63rem;color:var(--t2);margin-bottom:10px;line-height:1.5}
+
+/* ══ NEWS ══ */
+.ff-news-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:6px}
+.ff-news-title{font-family:var(--ff-head);font-size:.7rem;font-weight:800;color:var(--g1);letter-spacing:2px;text-transform:uppercase}
+.ff-news-src{font-size:.48rem;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase}
+.ff-table{width:100%;border-collapse:collapse;font-size:.65rem}
+.ff-table th{font-size:.46rem;font-weight:700;letter-spacing:2px;color:var(--t3);text-transform:uppercase;padding:5px 8px;border-bottom:1px solid rgba(255,255,255,.05);text-align:left;white-space:nowrap}
+.ff-table td{padding:7px 8px;border-bottom:1px solid rgba(255,255,255,.03);vertical-align:top}
+.ff-table tr:hover td{background:rgba(255,255,255,.015)}
+.ff-impact{display:inline-block;width:8px;height:8px;border-radius:50%}
+.ff-impact.high{background:#ef4444;box-shadow:0 0 5px #ef4444}
+.ff-impact.med{background:#f59e0b}
+.ff-impact.low{background:rgba(255,255,255,.2)}
+.ff-curr{font-family:var(--ff-mono);font-size:.56rem;font-weight:700;color:var(--t0);white-space:nowrap}
+.ff-event{font-size:.65rem;color:var(--t1);line-height:1.4}
+.ff-event-sub{font-size:.54rem;color:var(--t3);margin-top:1px}
+.ff-actual{font-family:var(--ff-mono);font-size:.6rem;font-weight:700;white-space:nowrap}
+.ff-actual.pos{color:var(--grn)}.ff-actual.neg{color:var(--red)}.ff-actual.neu{color:var(--t2)}
+.ff-fore{font-family:var(--ff-mono);font-size:.6rem;color:var(--t3);white-space:nowrap}
+.ff-time-cell{font-family:var(--ff-mono);font-size:.56rem;color:var(--t3);white-space:nowrap}
+.ff-tag{font-size:.44rem;font-weight:700;padding:1px 5px;border-radius:2px;text-transform:uppercase;letter-spacing:1px}
+.ff-tag.forex{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.25);color:#60a5fa}
+.ff-tag.crypto{background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.25);color:#c084fc}
+.ff-tag.vn{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);color:#4ade80}
+.filter-bar{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.05)}
+.filter-btn{font-size:.54rem;font-weight:600;letter-spacing:1px;padding:4px 9px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);color:var(--t2);cursor:pointer;transition:all .15s;text-transform:uppercase;font-family:var(--ff-body);border-radius:var(--r)}
+.filter-btn:hover,.filter-btn.active{background:rgba(201,151,42,.08);border-color:rgba(201,151,42,.3);color:var(--g1)}
+.news-ai-loading{display:flex;align-items:center;gap:7px;padding:14px;font-size:.68rem;color:var(--t3);font-family:var(--ff-mono)}
+.news-ai-spin{width:13px;height:13px;border:2px solid rgba(168,85,247,.2);border-top-color:#a855f7;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ══ METHOD ══ */
+.method-block{background:var(--s2);border:1px solid rgba(255,255,255,.06);padding:13px;margin-bottom:7px;border-radius:var(--r)}
+.method-block.gold{border-left:3px solid var(--g2);background:linear-gradient(135deg,rgba(201,151,42,.04),var(--s2))}
+.method-block.ai{border-left:3px solid #7c3aed;background:linear-gradient(135deg,rgba(124,58,237,.04),var(--s2))}
+.method-block.free{border-left:3px solid var(--grn);background:linear-gradient(135deg,rgba(34,197,94,.04),var(--s2))}
+.method-block h3{font-family:var(--ff-head);font-size:.73rem;font-weight:800;color:var(--g1);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.method-block h3.ai{color:#c084fc}.method-block h3.free{color:#4ade80}
+.method-block p{font-size:.72rem;color:var(--t1);line-height:1.7;margin-bottom:5px}
+.method-block ul{list-style:none;display:flex;flex-direction:column;gap:3px}
+.method-block ul li{display:flex;gap:6px;font-size:.7rem;color:var(--t1);line-height:1.5}
+.method-block ul li::before{content:'→';color:var(--g2);flex-shrink:0;font-family:var(--ff-mono)}
+
+/* ══ COPYTRADE ══ */
+.ct-section{background:var(--s2);border:1px solid rgba(255,255,255,.06);border-radius:var(--r);overflow:hidden}
+.ct-section-hdr{padding:10px 13px;border-bottom:1px solid rgba(255,255,255,.05);display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}
+.ct-section-title{font-family:var(--ff-head);font-size:.7rem;font-weight:800;color:var(--t0);letter-spacing:2px;text-transform:uppercase}
+.ct-toggle{font-size:.65rem;color:var(--t3);transition:transform .2s}
+.ct-toggle.open{transform:rotate(180deg)}
+.ct-body{display:none;padding:12px}
+.ct-body.open{display:block}
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ct-card{background:var(--s3);border:1px solid rgba(201,151,42,.18);padding:14px;border-radius:var(--r)}
+.ct-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid rgba(255,255,255,.05);margin:8px 0;border-radius:var(--r);overflow:hidden}
+.ct-stat{padding:7px 5px;text-align:center;border-right:1px solid rgba(255,255,255,.05)}
+.ct-stat:last-child{border-right:none}
+.ct-stat-v{font-family:var(--ff-mono);font-size:.9rem;font-weight:700;display:block;line-height:1}
+.ct-stat-l{font-size:.43rem;letter-spacing:1.5px;color:var(--t3);text-transform:uppercase;margin-top:2px;display:block}
+.ref-benefits{background:linear-gradient(135deg,rgba(201,151,42,.07),var(--s2));border:1px solid rgba(201,151,42,.18);padding:11px;margin-bottom:9px;border-radius:var(--r)}
+.ref-benefits-title{font-family:var(--ff-head);font-size:.63rem;font-weight:800;color:var(--g1);letter-spacing:2px;text-transform:uppercase;margin-bottom:7px}
+.ref-benefit-item{display:flex;align-items:flex-start;gap:6px;padding:4px 0;border-bottom:1px solid rgba(201,151,42,.07)}
+.ref-benefit-item:last-child{border-bottom:none}
+.ref-benefit-ico{font-size:.75rem;flex-shrink:0}
+.ref-benefit-text{font-size:.65rem;color:var(--t1);line-height:1.5}
+.ref-benefit-text strong{color:var(--g1)}
+
+/* ══ REVIEWS ══ */
+.reviews-summary{background:linear-gradient(135deg,rgba(201,151,42,.1),rgba(201,151,42,.02));border:1px solid rgba(201,151,42,.2);padding:16px;display:flex;align-items:center;gap:16px;margin-bottom:12px;border-radius:var(--r)}
+.reviews-score{font-family:var(--ff-head);font-size:2.8rem;font-weight:900;background:linear-gradient(135deg,var(--g0),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;flex-shrink:0}
+.reviews-right{flex:1}
+.reviews-stars-big{display:flex;gap:3px;margin-bottom:4px}
+.star-big{font-size:1.1rem;color:var(--g1)}
+.reviews-count{font-size:.6rem;color:var(--t2);margin-bottom:7px}
+.reviews-bar-row{display:flex;align-items:center;gap:6px;margin-bottom:3px}
+.reviews-bar-lbl{font-size:.5rem;color:var(--t3);min-width:36px;text-align:right;font-family:var(--ff-mono)}
+.reviews-bar-track{flex:1;height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden}
+.reviews-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--g3),var(--g1))}
+.reviews-bar-count{font-size:.48rem;color:var(--t3);min-width:16px;font-family:var(--ff-mono)}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:9px}
+.review-card{background:var(--s2);border:1px solid rgba(255,255,255,.06);padding:12px;border-radius:var(--r);transition:border-color .18s,transform .18s}
+.review-card:hover{border-color:rgba(201,151,42,.2);transform:translateY(-2px)}
+.review-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:7px}
+.review-avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--g4),var(--g3));border:1px solid rgba(201,151,42,.25);display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0}
+.review-info{flex:1;margin-left:7px}
+.review-name{font-size:.68rem;font-weight:600;color:var(--t0);margin-bottom:1px}
+.review-meta{font-size:.5rem;color:var(--t3);font-family:var(--ff-mono)}
+.review-stars{display:flex;gap:2px}
+.star{font-size:.76rem;color:var(--g1)}
+.review-badge-verified{font-size:.42rem;font-weight:700;letter-spacing:1px;padding:1px 5px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);color:#4ade80;text-transform:uppercase;border-radius:2px;margin-top:2px;display:inline-block}
+.review-text{font-size:.68rem;color:var(--t1);line-height:1.6;margin-bottom:6px}
+.review-result{font-size:.58rem;font-family:var(--ff-mono);color:var(--grn);padding:3px 6px;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.15);border-radius:2px;display:inline-block}
+
+/* ══ MODALS ══ */
+.modal{display:none;position:fixed;inset:0;z-index:500;align-items:center;justify-content:center;background:rgba(0,0,0,.85);backdrop-filter:blur(12px)}
+.modal.open{display:flex;animation:panIn .2s ease}
+.modal-box{background:var(--s2);border:1px solid rgba(201,151,42,.25);padding:22px;max-width:400px;width:92%;position:relative;border-radius:var(--r)}
+.modal-close{position:absolute;top:9px;right:11px;background:none;border:none;color:var(--t2);font-size:1.1rem;cursor:pointer;width:24px;height:24px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.modal-close:hover{color:var(--g1)}
+.modal-title{font-family:var(--ff-head);font-size:.84rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--g1);margin-bottom:4px}
+.modal-desc{font-size:.67rem;color:var(--t2);margin-bottom:13px;line-height:1.6}
+.inp-label{font-size:.52rem;font-weight:700;letter-spacing:2px;color:var(--t3);text-transform:uppercase;margin-bottom:3px;display:block}
+.inp{width:100%;background:var(--s3);border:1px solid rgba(255,255,255,.09);color:var(--t0);font-family:var(--ff-mono);font-size:.74rem;padding:8px 11px;outline:none;transition:border-color .2s;margin-bottom:8px;border-radius:var(--r)}
+.inp:focus{border-color:var(--g2)}
+.inp::placeholder{color:var(--t3)}
+.modal-btn{width:100%;padding:10px;background:linear-gradient(135deg,var(--g3),var(--g2),var(--g1));color:#000;font-family:var(--ff-head);font-size:.68rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:filter .2s;border-radius:var(--r)}
+.modal-btn:hover{filter:brightness(1.1)}
+.modal-hint{font-size:.56rem;color:var(--t3);text-align:center;margin-top:7px;line-height:1.5}
+.modal-hint a{color:var(--g1);text-decoration:none}
+.modal-error{font-size:.6rem;color:#f87171;margin-bottom:6px;display:none}
+.modal-success{font-size:.64rem;color:#4ade80;text-align:center;display:none;margin-top:5px}
+
+/* ══ MISC ══ */
+.badge{display:inline-flex;align-items:center;gap:3px;font-size:.48rem;font-weight:700;letter-spacing:1.5px;padding:2px 5px;text-transform:uppercase;border-radius:2px}
+.badge-live{background:rgba(34,197,94,.09);border:1px solid rgba(34,197,94,.28);color:#4ade80}
+.badge-lock{background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.18);color:#f87171}
+.scan-status{display:flex;align-items:center;gap:4px;font-size:.54rem;color:var(--t2);font-family:var(--ff-mono)}
+.scan-dot{width:5px;height:5px;border-radius:50%;background:var(--grn);animation:pp 1.4s ease-in-out infinite}
+.scan-dot.ai{background:#a855f7;box-shadow:0 0 5px #a855f7}
+#toasts{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:9999;display:flex;flex-direction:column;gap:5px;pointer-events:none;align-items:center}
+.toast{background:var(--s3);border:1px solid rgba(201,151,42,.25);padding:7px 14px;font-size:.68rem;color:var(--t1);box-shadow:var(--glow-g);pointer-events:auto;animation:panIn .22s ease;max-width:280px;line-height:1.4;border-radius:var(--r);text-align:center}
+.toast.err{border-color:rgba(239,68,68,.35)}
+.sidebar-overlay{display:none;position:fixed;inset:0;z-index:190;background:rgba(0,0,0,.65)}
+.sidebar-overlay.show{display:block}
+.lock-btn{font-size:.56rem;font-weight:700;letter-spacing:2px;padding:7px 18px;background:linear-gradient(135deg,var(--g3),var(--g2),var(--g1));color:#000;border:none;cursor:pointer;text-transform:uppercase;font-family:var(--ff-body);transition:filter .2s;border-radius:var(--r)}
+.lock-btn:hover{filter:brightness(1.1)}
+
+/* ══ MOBILE INDICATOR BAR (shown when overlays hidden on small screens) ══ */
+.mob-indicator-bar{display:none;gap:4px;flex-wrap:wrap;padding:5px 0;margin-top:5px}
+.mob-ind-chip{display:flex;align-items:center;gap:4px;padding:4px 8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:4px;font-size:.56rem;font-family:var(--ff-mono)}
+.mob-ind-chip.buy{border-color:rgba(34,197,94,.25);background:rgba(34,197,94,.06)}
+.mob-ind-chip.sell{border-color:rgba(239,68,68,.22);background:rgba(239,68,68,.05)}
+.mob-ind-chip.neu{border-color:rgba(240,192,74,.15);background:rgba(240,192,74,.04)}
+.mob-ind-verdict{width:100%;padding:7px 10px;text-align:center;font-family:var(--ff-head);font-size:.68rem;font-weight:800;letter-spacing:2px;border-radius:4px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07)}
+.mob-ind-verdict.buy{color:#4ade80;border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.07)}
+.mob-ind-verdict.sell{color:#f87171;border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.06)}
+.mob-ind-verdict.watch{color:var(--g1);border-color:rgba(240,192,74,.25);background:rgba(240,192,74,.05)}
+
+/* ══ ZALO FLOAT ══ */
+.zalo-float{position:fixed;bottom:18px;right:18px;z-index:400;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.zalo-bubble{background:var(--s3);border:1px solid rgba(255,255,255,.06);padding:6px 10px;border-radius:8px;font-size:.6rem;color:var(--t1);line-height:1.4;max-width:140px;text-align:right;position:relative;animation:bubbleF 3s ease-in-out infinite;box-shadow:0 4px 20px rgba(0,0,0,.5)}
+.zalo-bubble::after{content:'';position:absolute;bottom:-5px;right:13px;border:5px solid transparent;border-top-color:var(--s3);border-bottom:none}
+@keyframes bubbleF{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.zalo-btn{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#0068ff,#0099ff);display:flex;align-items:center;justify-content:center;font-size:1.3rem;cursor:pointer;box-shadow:0 4px 18px rgba(0,102,255,.4);animation:zaloR 2.5s ease-in-out infinite;text-decoration:none;transition:transform .2s}
+.zalo-btn:hover{transform:scale(1.08)}
+@keyframes zaloR{0%,100%{box-shadow:0 4px 18px rgba(0,102,255,.4),0 0 0 0 rgba(0,102,255,.4)}50%{box-shadow:0 4px 18px rgba(0,102,255,.4),0 0 0 9px rgba(0,102,255,0)}}
+
+/* ══ MOBILE ══ */
+@media(max-width:900px){
+  .sidebar{transform:translateX(-100%)}.sidebar.mob-open{transform:translateX(0)}
+  .main{margin-left:0}.ham-mob{display:flex}
+  .ind4-grid{grid-template-columns:repeat(2,1fr)}
+  .rev-grid{grid-template-columns:1fr 1fr}
+  .extra-grid{grid-template-columns:1fr}
+  .price-strip{grid-template-columns:repeat(2,1fr)}
+  .panel{padding:8px}
+  .ct-grid{grid-template-columns:1fr}
+  .reviews-summary{flex-direction:column;gap:10px}
+  .chart-inner{height:320px}
+  .ifai-chart-inner{height:300px}
+  .zalo-float{bottom:12px;right:10px}
+  /* Mobile chart overlay — compact, stackable */
+  .chart-ifai-overlay{width:140px!important;font-size:.6em}
+  .cio-header{padding:4px 7px}
+  .cio-body{padding:5px 7px}
+  .cio-row{margin-bottom:2px}
+  .chart-free-label{padding:4px 7px}
+  /* Remove overlay collision on small screens — move them to row below chart */
+  .mob-indicator-bar{display:flex!important}
+}
+@media(max-width:600px){
+  .price-strip{grid-template-columns:1fr 1fr}
+  .ind4-grid{grid-template-columns:1fr 1fr}
+  .rev-grid{grid-template-columns:1fr}
+  .topbar-actions .tb-btn:not(.primary){display:none}
+  .chart-inner{height:260px}
+  .ifai-chart-inner{height:250px}
+  .ff-table th:nth-child(5),.ff-table td:nth-child(5){display:none}
+  .dash-tab{padding:6px 10px;font-size:.55rem;letter-spacing:1px}
+  /* On very small screens, hide floating overlays — show inline bar instead */
+  .chart-ifai-overlay,.chart-free-label{display:none!important}
+  .mob-indicator-bar{display:flex!important}
+  /* News table — compact */
+  .ff-table{font-size:.56rem}
+  .ff-table th,.ff-table td{padding:5px 4px}
+  /* Price strip compact */
+  .price-strip{gap:0}
+  .price-cell{padding:5px 6px;gap:5px}
+  .pc-val{font-size:.65rem}
+  .pc-sym{font-size:.5rem;min-width:38px}
+}
+@media(max-width:400px){
+  .chart-inner{height:230px}
+  .ifai-chart-inner{height:220px}
+  .price-strip{grid-template-columns:1fr 1fr}
+  .topbar{height:40px;padding:0 7px}
+  .panel{padding:6px}
+}
+</style>
+</head>
+<body>
+
+<!-- INTRO -->
+<div id="introScreen">
+  <div class="intro-stars" id="introStars"></div>
+  <div class="intro-scan"></div>
+  <div class="ic tl"></div><div class="ic tr"></div>
+  <div class="ic bl"></div><div class="ic br"></div>
+  <!-- 3D Orbs bên ngoài giao diện -->
+  <div class="orb-scene">
+    <div class="orb orb-gold"></div>
+    <div class="orb orb-purple"></div>
+    <div class="orb orb-cyan"></div>
+    <div class="orb orb-red"></div>
+  </div>
+  <div class="intro-center">
+    <div class="qcore">
+      <div class="qr qr1"></div><div class="qr qr2"></div><div class="qr qr3"></div>
+      <div class="qglow"></div>
+      <svg class="qx" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="xg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fff"/><stop offset="45%" stop-color="#FFE566"/><stop offset="100%" stop-color="#C9972A"/></linearGradient></defs>
+        <g stroke="url(#xg)" stroke-width="12" stroke-linecap="round" fill="none"><line x1="20" y1="20" x2="80" y2="80"/><line x1="80" y1="20" x2="20" y2="80"/></g>
+      </svg>
+    </div>
+    <div class="ititle">XBACK CAPITAL</div>
+    <div class="isub">IF AI Trading Intelligence System v6</div>
+    <div class="itagline">Free: HA Chart + OP Line · IF AI Tab: Full 6 Indicators + ⭐ Stars on Chart</div>
+    <button class="ienter" onclick="enterApp()"><span>→ KHỞI ĐỘNG HỆ THỐNG</span></button>
+    <div class="ibar"><div class="ibar-fill"></div></div>
+  </div>
+</div>
+
+<!-- MODALS -->
+<div class="modal" id="modalRef">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modalRef')">✕</button>
+    <div class="modal-title">🔐 Nhập Mã Referral</div>
+    <div class="modal-desc">Kích hoạt IF AI Full · Nhóm kèo realtime · Hoàn phí giao dịch Vantage</div>
+    <div class="ref-benefits">
+      <div class="ref-benefits-title">🎁 Quyền Lợi Thành Viên Ref</div>
+      <div class="ref-benefit-item"><span class="ref-benefit-ico">💰</span><span class="ref-benefit-text"><strong>Hoàn phí giao dịch</strong> — Nhận lại % hoa hồng từ mỗi lệnh</span></div>
+      <div class="ref-benefit-item"><span class="ref-benefit-ico">🤖</span><span class="ref-benefit-text"><strong>IF AI Full Tab</strong> — Chart riêng full HA + 6 chỉ số + ⭐ Stars hiện trên chart</span></div>
+      <div class="ref-benefit-item"><span class="ref-benefit-ico">📢</span><span class="ref-benefit-text"><strong>Kèo Realtime không delay</strong> — Nhận ngay khi phát</span></div>
+    </div>
+    <label class="inp-label">Mã Referral</label>
+    <input class="inp" id="refInput" placeholder="XBACK-XXXXXXXX hoặc ref123" type="text" autocomplete="off" maxlength="30">
+    <div class="modal-error" id="refError"></div>
+    <div class="modal-success" id="refSuccess">✓ Kích hoạt thành công!</div>
+    <button class="modal-btn" onclick="activateRef()">Kích Hoạt Ngay</button>
+    <p class="modal-hint">Chưa có mã? <a href="https://t.me/xbackthanhdat" target="_blank">Telegram @xbackthanhdat</a> · <a href="https://www.facebook.com/noblack03/" target="_blank">Facebook</a></p>
+  </div>
+</div>
+
+<div class="modal" id="modalContact">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modalContact')">✕</button>
+    <div class="modal-title">📲 Liên Hệ XBack Capital</div>
+    <div class="modal-desc">Hỗ trợ 24/7 · Tư vấn miễn phí · Phản hồi trong 15 phút</div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <a href="https://www.facebook.com/noblack03/" target="_blank" style="display:flex;align-items:center;gap:9px;padding:10px 12px;background:var(--s3);border:1px solid rgba(255,255,255,.07);text-decoration:none;color:var(--t1);border-radius:var(--r)"><span style="font-size:.95rem">📘</span><div><div style="font-size:.52rem;color:var(--t3);letter-spacing:2px;text-transform:uppercase;margin-bottom:1px">Facebook</div><div style="font-size:.72rem;font-weight:600;color:var(--g1)">XBack Capital</div></div><span style="margin-left:auto;color:var(--g2)">→</span></a>
+      <a href="https://t.me/xbackthanhdat" target="_blank" style="display:flex;align-items:center;gap:9px;padding:10px 12px;background:var(--s3);border:1px solid rgba(255,255,255,.07);text-decoration:none;color:var(--t1);border-radius:var(--r)"><span style="font-size:.95rem">✈️</span><div><div style="font-size:.52rem;color:var(--t3);letter-spacing:2px;text-transform:uppercase;margin-bottom:1px">Telegram</div><div style="font-size:.72rem;font-weight:600;color:var(--g1)">@xbackthanhdat</div></div><span style="margin-left:auto;color:var(--g2)">→</span></a>
+      <a href="https://zalo.me/0961689607" target="_blank" style="display:flex;align-items:center;gap:9px;padding:10px 12px;background:linear-gradient(135deg,rgba(0,104,255,.08),var(--s3));border:1px solid rgba(0,104,255,.25);text-decoration:none;color:var(--t1);border-radius:var(--r)"><span style="font-size:.95rem">💬</span><div><div style="font-size:.52rem;color:var(--t3);letter-spacing:2px;text-transform:uppercase;margin-bottom:1px">Zalo — Ưu tiên</div><div style="font-size:.72rem;font-weight:600;color:#60a5fa">0961 689 607</div></div><span style="margin-left:auto;color:#60a5fa">→</span></a>
+    </div>
+  </div>
+</div>
+
+<div id="toasts"></div>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+<div class="zalo-float" id="zaloFloat" style="display:none">
+  <div class="zalo-bubble" id="zaloBubble">📈 Cần tư vấn?<br>Nhắn Zalo ngay!</div>
+  <a href="https://zalo.me/0961689607" target="_blank" class="zalo-btn" onclick="toast('💬 Đang mở Zalo...')">💬</a>
+</div>
+
+<!-- Dashboard orbs (behind everything) -->
+<div class="dash-orb-wrap" id="dashOrbWrap" style="display:none">
+  <div class="dash-orb dash-orb-g"></div>
+  <div class="dash-orb dash-orb-p"></div>
+</div>
+
+<!-- MAIN APP -->
+<div class="app" id="mainApp" style="display:none">
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-logo" onclick="showPanel('dashboard')">
+      <div class="sb-logo-wrap">
+        <div class="sb-logo-icon">X</div>
+        <div><div class="sb-logo-txt">XBACK</div><div class="sb-logo-sub">Capital · IF AI v6</div></div>
+      </div>
+    </div>
+    <div class="sb-user">
+      <div class="sb-user-dot"></div>
+      <div class="sb-user-name" id="sbName">Khách Tự Do</div>
+      <div class="sb-user-badge free" id="sbBadge">FREE</div>
+    </div>
+    <nav class="sb-nav">
+      <div class="sb-section">Dashboard</div>
+      <a class="sb-item active" onclick="showPanel('dashboard')"><span class="sb-item-ico">⚡</span><span class="sb-item-lbl">Chart · IF AI</span></a>
+      <div class="sb-section">Kênh Kèo</div>
+      <a class="sb-item" onclick="showPanel('callgroup')"><span class="sb-item-ico">📢</span><span class="sb-item-lbl">Nhóm Call Kèo</span><span class="sb-item-badge lock" id="callBadge">Delay 24h</span></a>
+      <div class="sb-section">Thị Trường</div>
+      <a class="sb-item" onclick="showPanel('news')"><span class="sb-item-ico">📰</span><span class="sb-item-lbl">Tin Tức · ForexFactory</span><span class="sb-item-badge ai">AI</span></a>
+      <div class="sb-section">Học Thuật</div>
+      <a class="sb-item" onclick="showPanel('method')"><span class="sb-item-ico">📐</span><span class="sb-item-lbl">Phương Pháp XBack</span></a>
+      <div class="sb-section">Cộng Đồng</div>
+      <a class="sb-item" onclick="showPanel('copytrade')"><span class="sb-item-ico">🔄</span><span class="sb-item-lbl">CopyTrade Vantage</span></a>
+      <a class="sb-item" onclick="showPanel('reviews')"><span class="sb-item-ico">⭐</span><span class="sb-item-lbl">Đánh Giá · Reviews</span></a>
+    </nav>
+    <div class="sb-bottom">
+      <div class="sb-ref-box" onclick="openModal('modalRef')">
+        <div class="sb-ref-title">🔑 Mở Khóa Ref · IF AI Full</div>
+        <div class="sb-ref-desc">Tab IFAI riêng · Stars on chart · Kèo realtime</div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="ham-mob" id="hamMob" onclick="toggleSidebar()"><span></span><span></span><span></span></button>
+      <div class="topbar-ticker"><div class="ticker-inner" id="tickerInner"></div></div>
+      <div class="topbar-actions">
+        <div class="scan-status"><span class="scan-dot ai"></span>IF AI Live</div>
+        <button class="tb-btn" onclick="openModal('modalContact')">Liên Hệ</button>
+        <button class="tb-btn primary" onclick="openModal('modalRef')" id="topRefBtn">Nhập Ref</button>
+      </div>
+    </header>
+
+    <!-- ════ DASHBOARD ════ -->
+    <div class="panel active" id="p-dashboard">
+      <div class="panel-head">
+        <div>
+          <div class="panel-title">⚡ <span>XBack Chart · IF AI</span></div>
+          <div class="panel-sub" id="chartSubLabel">Free: Heikin Ashi mượt + OP Line · Tab IFAI: Full 6 indicators + ⭐ Stars on chart</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px">
+          <div class="scan-status"><span class="scan-dot ai"></span><span id="scanTxt">IF AI đang quét</span></div>
+          <button class="tb-btn" onclick="refreshAll()" style="font-size:.54rem">↻ Refresh</button>
+        </div>
+      </div>
+
+      <!-- LIVE PRICE STRIP -->
+      <div class="price-strip" id="priceStrip"></div>
+
+      <!-- SYMBOL TABS -->
+      <div class="chart-sym-bar">
+        <button class="csym-btn active" onclick="switchChart(this,'XAUUSD')">XAU/USD 🥇</button>
+        <button class="csym-btn" onclick="switchChart(this,'BTCUSDT')">BTC/USDT</button>
+        <button class="csym-btn" onclick="switchChart(this,'ETHUSDT')">ETH/USDT</button>
+        <button class="csym-btn" onclick="switchChart(this,'EURUSD')">EUR/USD</button>
+        <button class="csym-btn" onclick="switchChart(this,'GBPUSD')">GBP/USD</button>
+        <button class="csym-btn" onclick="switchChart(this,'USDJPY')">USD/JPY</button>
+        <button class="csym-btn" onclick="switchChart(this,'VN30')">VN30</button>
+        <button class="csym-btn" onclick="switchChart(this,'HPG')">HPG</button>
+      </div>
+
+      <!-- TAB SWITCHER: FREE vs IFAI -->
+      <div class="dash-tabs">
+        <div class="dash-tab active" id="tab-free" onclick="switchDashTab('free')">📊 Chart · HA + OP</div>
+        <div class="dash-tab ai-tab" id="tab-ifai" onclick="switchDashTab('ifai')">🤖 IF AI · Full Indicators ⭐</div>
+      </div>
+
+      <!-- FREE CHART CONTENT -->
+      <div class="dash-content active" id="dc-free">
+        <div class="chart-zone" id="chartZone" style="position:relative">
+          <!-- ── TIMEFRAME BAR ── -->
+          <div class="tf-bar" id="tfBarFree">
+            <button class="tf-btn" onclick="switchTF('5','tfBarFree','dashChart',false)">5M</button>
+            <button class="tf-btn" onclick="switchTF('15','tfBarFree','dashChart',false)">15M</button>
+            <button class="tf-btn" onclick="switchTF('60','tfBarFree','dashChart',false)">1H</button>
+            <button class="tf-btn active" onclick="switchTF('240','tfBarFree','dashChart',false)">4H</button>
+            <button class="tf-btn" onclick="switchTF('D','tfBarFree','dashChart',false)">1D</button>
+            <div class="tf-sep"></div>
+            <button class="tf-btn" onclick="switchTF('W','tfBarFree','dashChart',false)">1W</button>
+            <div class="tf-live"><div class="tf-live-dot"></div><span id="tfLiveLbl">LIVE</span></div>
+          </div>
+          <div id="dashChart" class="chart-inner" style="padding-top:32px"></div>
+          <!-- OP label top-left (below tf bar) -->
+          <div class="chart-free-label" id="chartFreeLabel" style="top:44px">
+            <div class="cfl-title">📅 Daily OP</div>
+            <div class="cfl-val" id="opLabelVal" style="color:var(--grn)">—</div>
+            <div class="cfl-note">Trên OP = BUY · Dưới = SELL</div>
+          </div>
+          <!-- ── IF AI OVERLAY (top-right) ── -->
+          <div class="chart-ifai-overlay" id="freeIFAIOverlay" style="top:44px">
+            <div class="cio-header"><div class="cio-pulse"></div><span class="cio-title">IF AI · LIVE</span></div>
+            <div class="cio-body">
+              <div class="cio-verdict watch" id="freeOverlayVerdict">⏳ LOADING</div>
+              <div class="cio-score" id="freeOverlayScore">Đang tính toán...</div>
+              <div class="cio-stars" id="freeOverlayStars"></div>
+              <div class="cio-divider"></div>
+              <div class="cio-row"><span class="cio-ind-name">RSI</span><span class="cio-ind-val neu" id="fov-rsi">—</span></div>
+              <div class="cio-row"><span class="cio-ind-name">MACD</span><span class="cio-ind-val neu" id="fov-macd">—</span></div>
+              <div class="cio-row"><span class="cio-ind-name">ADX</span><span class="cio-ind-val neu" id="fov-adx">—</span></div>
+              <div class="cio-row"><span class="cio-ind-name">BB</span><span class="cio-ind-val neu" id="fov-bb">—</span></div>
+            </div>
+            <div class="cio-op-row">
+              <span class="cio-op-label">📅 OP</span>
+              <span class="cio-op-val" id="fov-op">—</span>
+            </div>
+          </div>
+          <!-- ── BOTTOM STAR STRIP ── -->
+          <div class="chart-star-strip" id="freeStarStrip">
+            <span class="css-lbl">★ SIGNALS</span>
+            <span style="font-size:.44rem;color:rgba(255,255,255,.2);font-family:var(--ff-mono)">Đang phân tích...</span>
+          </div>
+        </div>
+
+        <!-- ZALO CTA -->
+        <div style="margin-top:8px;background:linear-gradient(135deg,rgba(0,104,255,.08),rgba(0,0,0,.5));border:1px solid rgba(0,104,255,.2);padding:11px 13px;border-radius:var(--r);display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <div style="flex:1"><div style="font-family:var(--ff-head);font-size:.65rem;font-weight:800;color:#60a5fa;letter-spacing:2px;text-transform:uppercase;margin-bottom:2px">💬 Kèo bắn thẳng qua Zalo</div><div style="font-size:.62rem;color:var(--t2)">Thành viên Ref nhận kèo tức thời · Entry · SL · TP · Hỗ trợ 24/7</div></div>
+          <a href="https://zalo.me/0961689607" target="_blank" style="padding:8px 16px;background:linear-gradient(135deg,#0068ff,#0099ff);color:#fff;font-family:var(--ff-head);font-size:.6rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:var(--r);white-space:nowrap;flex-shrink:0">Chat Zalo →</a>
+        </div>
+      </div>
+
+      <!-- IFAI FULL TAB CONTENT -->
+      <div class="dash-content" id="dc-ifai">
+        <!-- LOCKED state for non-ref -->
+        <div id="ifaiLockWall" style="display:none">
+          <div class="ref-required-wall">
+            <div style="font-size:2.5rem;margin-bottom:10px">🤖</div>
+            <div class="rr-title">IF AI Tab · Dành Cho Thành Viên Ref</div>
+            <div class="rr-desc">Tab này có chart Heikin Ashi riêng với <strong style="color:#c084fc">6 chỉ số tích hợp</strong> (RSI · MACD · ADX · BB · Stoch · OP) và <strong style="color:var(--g1)">⭐ Ngôi sao hiện thẳng dưới chart</strong> khi tín hiệu hội tụ.<br><br>Free: xem Chart HA + đường OP bên tab Chart.</div>
+            <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+              <button class="lock-btn" onclick="openModal('modalRef')">🔑 Nhập Mã Ref</button>
+              <a href="https://zalo.me/0961689607" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:7px 15px;background:linear-gradient(135deg,#0068ff,#0099ff);color:#fff;font-family:var(--ff-head);font-size:.58rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;border-radius:var(--r)">💬 Zalo</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- UNLOCKED IFAI content -->
+        <div id="ifaiUnlocked" style="display:none">
+          <!-- IFAI Chart with studies + star overlay on bottom -->
+          <div class="ifai-chart-zone" id="ifaiChartZone" style="position:relative">
+            <!-- ── TIMEFRAME BAR ── -->
+            <div class="tf-bar" id="tfBarIFAI" style="border-color:rgba(168,85,247,.2)">
+              <button class="tf-btn" onclick="switchTF('5','tfBarIFAI','ifaiChart',true)" style="border-color:rgba(168,85,247,.18)">5M</button>
+              <button class="tf-btn" onclick="switchTF('15','tfBarIFAI','ifaiChart',true)" style="border-color:rgba(168,85,247,.18)">15M</button>
+              <button class="tf-btn" onclick="switchTF('60','tfBarIFAI','ifaiChart',true)" style="border-color:rgba(168,85,247,.18)">1H</button>
+              <button class="tf-btn active" onclick="switchTF('240','tfBarIFAI','ifaiChart',true)" style="border-color:rgba(168,85,247,.18)">4H</button>
+              <button class="tf-btn" onclick="switchTF('D','tfBarIFAI','ifaiChart',true)" style="border-color:rgba(168,85,247,.18)">1D</button>
+              <div class="tf-sep"></div>
+              <button class="tf-btn" onclick="switchTF('W','tfBarIFAI','ifaiChart',true)" style="border-color:rgba(168,85,247,.18)">1W</button>
+              <div class="tf-live" style="color:rgba(192,132,252,.7)"><div class="tf-live-dot"></div><span>IFAI · LIVE</span></div>
+            </div>
+            <div id="ifaiChart" class="ifai-chart-inner" style="padding-top:32px"></div>
+            <!-- OP badge top-left on IFAI chart (below tf bar) -->
+            <div class="ifai-op-badge" id="ifaiOpBadge" style="top:44px">
+              <div style="font-size:.44rem;font-weight:700;letter-spacing:2px;color:var(--g2);text-transform:uppercase;margin-bottom:2px">📅 OP</div>
+              <div style="font-family:var(--ff-mono);font-size:.68rem;font-weight:700" id="ifaiOpVal" style="color:var(--g1)">—</div>
+            </div>
+            <!-- ── IF AI OVERLAY (top-right) — FULL version for IFAI tab ── -->
+            <div class="chart-ifai-overlay" id="ifaiIFAIOverlay" style="top:44px;width:178px;border-color:rgba(168,85,247,.45)">
+              <div class="cio-header" style="background:linear-gradient(90deg,rgba(88,28,135,.6),rgba(0,0,0,.4))">
+                <div class="cio-pulse"></div><span class="cio-title" style="color:#c084fc">🤖 IF AI · FULL</span>
+              </div>
+              <div class="cio-body">
+                <div class="cio-verdict watch" id="ifaiOverlayVerdict">⏳ LOADING</div>
+                <div class="cio-score" id="ifaiOverlayScore">Đang tính toán...</div>
+                <div class="cio-stars" id="ifaiOverlayStars"></div>
+                <div class="cio-divider"></div>
+                <div class="cio-row"><span class="cio-ind-name">RSI</span><span class="cio-ind-val neu" id="iov-rsi">—</span></div>
+                <div class="cio-row"><span class="cio-ind-name">MACD</span><span class="cio-ind-val neu" id="iov-macd">—</span></div>
+                <div class="cio-row"><span class="cio-ind-name">ADX</span><span class="cio-ind-val neu" id="iov-adx">—</span></div>
+                <div class="cio-row"><span class="cio-ind-name">BB</span><span class="cio-ind-val neu" id="iov-bb">—</span></div>
+                <div class="cio-row"><span class="cio-ind-name">Stoch</span><span class="cio-ind-val neu" id="iov-stoch">—</span></div>
+              </div>
+              <div class="cio-op-row">
+                <span class="cio-op-label">📅 OP</span>
+                <span class="cio-op-val" id="iov-op">—</span>
+              </div>
+            </div>
+            <!-- STARS overlaid on chart bottom -->
+            <div class="chart-star-strip" id="ifaiStarStrip">
+              <span class="css-lbl" style="color:rgba(192,132,252,.7)">★ IF AI STARS</span>
+              <span id="ifaiStarOverlay" style="font-size:.44rem;color:rgba(255,255,255,.2);font-family:var(--ff-mono)">Đang phân tích...</span>
+            </div>
+          </div>
+
+          <!-- IF AI Mode bar -->
+          <div class="ifai-mode-bar">
+            <div class="ifai-mode-left">
+              <div class="ifai-pulse"></div>
+              <div class="ifai-mode-title">IF AI LIVE</div>
+            </div>
+            <div class="mode-big watch" id="ifaiModeBig">⏳ LOADING</div>
+            <div class="ifai-mode-score" id="ifaiModeScore">Đang tính...</div>
+          </div>
+
+          <!-- 4 main indicators -->
+          <div class="ind4-grid" id="indGrid"></div>
+          <!-- BB + Stoch extra -->
+          <div class="extra-grid" id="extraGrid"></div>
+          <!-- Reversal candles -->
+          <div class="rev-section" id="revSection">
+            <div class="rev-section-hdr">
+              <div style="font-size:.5rem;font-weight:700;letter-spacing:3px;color:rgba(239,68,68,.7);text-transform:uppercase">🕯️ NẾN ĐẢO CHIỀU · ENTRY POINTS</div>
+              <div class="scan-status"><span class="scan-dot" style="background:#ef4444;box-shadow:0 0 4px #ef4444"></span><span id="revCount">Đang quét...</span></div>
+            </div>
+            <div class="rev-grid" id="revGrid"></div>
+          </div>
+          <!-- Summary ring -->
+          <div class="sum-bar" id="sumBar"></div>
+        </div>
+      </div>
+
+    </div><!-- /p-dashboard -->
+
+    <!-- ════ CALL GROUP ════ -->
+    <div class="panel" id="p-callgroup">
+      <div class="panel-head">
+        <div>
+          <div class="panel-title">📢 <span>Nhóm Call Kèo</span></div>
+          <div class="panel-sub">Lịch sử kèo · Delay 24h với Free · Ref = xem realtime</div>
+        </div>
+        <span class="badge badge-lock" id="callRTBadge">Realtime cần Ref</span>
+      </div>
+      <div class="call-delay-note">ℹ️ Kèo hiển thị ở đây <strong style="color:var(--g1)">chậm 24 giờ</strong>. Muốn kèo realtime → nhập mã referral.</div>
+      <div class="call-list" id="callGroupList"></div>
+      <div class="ref-required-wall" style="margin-top:10px">
+        <div class="rr-title">🔐 Nhận Kèo Realtime</div>
+        <div class="rr-desc">Nhập mã Ref để nhận kèo ngay khi phát · Entry · SL · TP · IF AI ≥6/8</div>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+          <button class="lock-btn" onclick="openModal('modalRef')">🔑 Nhập Ref</button>
+          <a href="https://zalo.me/0961689607" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:7px 15px;background:linear-gradient(135deg,#0068ff,#0099ff);color:#fff;font-family:var(--ff-head);font-size:.58rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;border-radius:var(--r)">💬 Chat Zalo</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ NEWS ════ -->
+    <div class="panel" id="p-news">
+      <div class="panel-head">
+        <div>
+          <div class="panel-title">📰 <span>Tin Tức · ForexFactory</span></div>
+          <div class="panel-sub">Lịch kinh tế · Tin cao · Tự động cập nhật · AI phân tích tác động</div>
+        </div>
+        <button class="tb-btn" onclick="loadNews()" style="background:linear-gradient(135deg,#4c1d95,#7c3aed,#a855f7);color:#fff;border:none;font-weight:700;font-size:.54rem">🔄 Tải Mới</button>
+      </div>
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterNews(this,'all')">Tất cả</button>
+        <button class="filter-btn" onclick="filterNews(this,'high')">🔴 Tác động cao</button>
+        <button class="filter-btn" onclick="filterNews(this,'forex')">Forex</button>
+        <button class="filter-btn" onclick="filterNews(this,'crypto')">Crypto</button>
+        <button class="filter-btn" onclick="filterNews(this,'vn')">VN Market</button>
+      </div>
+      <div id="newsList"></div>
+    </div>
+
+    <!-- ════ METHOD ════ -->
+    <div class="panel" id="p-method">
+      <div class="panel-head"><div><div class="panel-title">📐 <span>Phương Pháp XBack</span></div><div class="panel-sub">PA Cơ Bản · OP · Heikin Ashi · RSI/MACD/ADX/BB/Stoch · Đảo Chiều</div></div></div>
+      <div class="method-block free"><h3 class="free">🆓 Nến Heikin Ashi — Lọc Nhiễu</h3><p>HA làm mượt nến thường, giúp nhìn trend rõ hơn. Nến HA xanh dài không bóng dưới = trend tăng mạnh. Nến HA đỏ dài không bóng trên = trend giảm mạnh. Nến HA nhỏ có bóng 2 đầu = đảo chiều.</p></div>
+      <div class="method-block gold"><h3>1. OP — Daily Opening Price</h3><p>Giá mở cửa ngày đóng vai trò "trục trọng lực". Khi giá vượt OP = ưu tiên BUY. Khi giá dưới OP = ưu tiên SELL. Khi giá bị kéo quá xa OP sẽ có lực kéo ngược về.</p></div>
+      <div class="method-block gold"><h3>2. RSI (14) — Momentum</h3><ul><li>&gt;70: Quá mua → Cẩn thận SELL đảo chiều tại vùng resistance</li><li>60–70: BUY momentum mạnh, không quá mua</li><li>40–60: Trung tính, chờ xác nhận</li><li>30–40: SELL momentum mạnh, không quá bán</li><li>&lt;30: Quá bán → Cẩn thận BUY đảo chiều tại vùng support</li></ul></div>
+      <div class="method-block gold"><h3>3. MACD (12,26,9) — Xác Nhận Chiều</h3><ul><li>Histogram dương tăng dần = BUY momentum đang xây dựng</li><li>Histogram âm giảm dần = SELL momentum đang xây dựng</li><li>Signal line cắt lên = BUY confirmation</li><li>Signal line cắt xuống = SELL confirmation</li></ul></div>
+      <div class="method-block gold"><h3>4. ADX (14) — Lực Xu Hướng</h3><ul><li>ADX &lt;25: Sideway — không nên giao dịch theo xu hướng</li><li>ADX 25–40: Có xu hướng rõ ràng → theo chiều +DI/-DI</li><li>ADX &gt;40: Xu hướng cực mạnh / Quá đà → cẩn thận đảo chiều</li><li>+DI &gt; -DI: BUY · -DI &gt; +DI: SELL</li></ul></div>
+      <div class="method-block gold"><h3>5. Bollinger Bands — Biên Động</h3><ul><li>Giá chạm Upper BB + RSI &gt;70 = Quá mua → xem xét SELL đảo</li><li>Giá chạm Lower BB + RSI &lt;30 = Quá bán → xem xét BUY đảo</li><li>BB thu hẹp (Squeeze) → sắp có breakout mạnh</li></ul></div>
+      <div class="method-block gold"><h3>6. Stochastic (14,3,3) — Đảo Chiều Ngắn</h3><ul><li>%K cắt %D lên từ vùng &lt;20 = BUY tín hiệu đảo chiều</li><li>%K cắt %D xuống từ vùng &gt;80 = SELL tín hiệu đảo chiều</li><li>Dùng kết hợp với Pin Bar / Engulf để confirm entry</li></ul></div>
+      <div class="method-block gold"><h3>7. Nến Đảo Chiều — Entry Points</h3><ul><li>Hammer (Búa): Đuôi dài bên dưới, body nhỏ trên → BUY đảo tại support</li><li>Shooting Star: Đuôi dài bên trên, body nhỏ dưới → SELL đảo tại resistance</li><li>Engulfing Bull: Nến xanh nuốt nến đỏ → BUY signal mạnh</li><li>Engulfing Bear: Nến đỏ nuốt nến xanh → SELL signal mạnh</li><li>Pin Bar: Rejection mạnh khỏi vùng cản → Entry tại body đóng cửa</li></ul></div>
+      <div class="method-block ai"><h3 class="ai">⭐ STAR SIGNALS — Ngôi Sao Đẹp Chuẩn</h3><p>Khi nhiều chỉ số đồng thuận BUY hoặc SELL cùng lúc, hệ thống hiển thị ngôi sao ⭐ bên dưới chart trong tab IF AI. Càng nhiều sao = tín hiệu càng mạnh. <strong style="color:#c084fc">Tab IF AI (Ref)</strong> hiển thị stars thẳng trên chart như Pine Script indicator thật sự.</p></div>
+    </div>
+
+    <!-- ════ COPYTRADE ════ -->
+    <div class="panel" id="p-copytrade">
+      <div class="panel-head"><div><div class="panel-title">🔄 <span>CopyTrade</span></div><div class="panel-sub">Vantage Markets · 2 Chiến lược · Tự động 24/7</div></div></div>
+      <div class="ct-section">
+        <div class="ct-section-hdr" onclick="toggleCT(this)">
+          <div class="ct-section-title">💰 Xem Chiến Lược CopyTrade</div>
+          <div class="ct-toggle" id="ctToggle">▼</div>
+        </div>
+        <div class="ct-body" id="ctBody">
+          <div class="ref-benefits" style="margin-bottom:12px">
+            <div class="ref-benefits-title">💰 Quyền Lợi Khi Mở TK Qua Ref XBack</div>
+            <div class="ref-benefit-item"><span class="ref-benefit-ico">💸</span><span class="ref-benefit-text"><strong>Hoàn phí giao dịch</strong> — Nhận lại % hoa hồng từ mỗi lệnh</span></div>
+            <div class="ref-benefit-item"><span class="ref-benefit-ico">📉</span><span class="ref-benefit-text"><strong>Spread ưu đãi</strong> — Điều kiện tốt hơn tài khoản thông thường</span></div>
+            <div class="ref-benefit-item"><span class="ref-benefit-ico">🎁</span><span class="ref-benefit-text"><strong>Hỗ trợ ưu tiên</strong> — XBack hỗ trợ thiết lập CopyTrade, tư vấn chiến lược</span></div>
+          </div>
+          <div class="ct-grid">
+            <div class="ct-card" style="box-shadow:var(--glow-g)">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px"><div><div style="font-family:var(--ff-head);font-size:.82rem;font-weight:800;color:var(--g1);letter-spacing:1px;text-transform:uppercase">Xback Capital</div><div style="font-size:.56rem;color:var(--t2);margin-top:1px">An Toàn · Bảo Toàn Vốn</div></div><span class="badge badge-live">● Live</span></div>
+              <div style="font-family:var(--ff-mono);font-size:1.7rem;font-weight:700;color:var(--grn);line-height:1;margin-bottom:2px">+52%</div>
+              <div style="font-size:.56rem;color:var(--t3);font-style:italic;margin-bottom:9px">Lợi nhuận tích lũy hiện tại</div>
+              <div class="ct-stat-row"><div class="ct-stat"><span class="ct-stat-v" style="color:var(--g1)">71%</span><span class="ct-stat-l">Win Rate</span></div><div class="ct-stat"><span class="ct-stat-v" style="color:var(--g1)">4%</span><span class="ct-stat-l">Max DD</span></div><div class="ct-stat"><span class="ct-stat-v" style="color:var(--g1)">340</span><span class="ct-stat-l">Lệnh/Th</span></div></div>
+              <a href="https://www.vantagemarkets.com/open-live-account/?sub1=spid_MTE1Mjg4NA%3D%3D&affid=26464721&platform=copytrading&autoCertification=false" target="_blank" style="display:block;text-align:center;padding:8px;background:linear-gradient(135deg,var(--g3),var(--g2),var(--g1));color:#000;font-family:var(--ff-head);font-size:.62rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;text-decoration:none;margin-top:9px;border-radius:var(--r)">Mở TK & CopyTrade →</a>
+            </div>
+            <div class="ct-card" style="border-color:rgba(239,68,68,.16);background:linear-gradient(135deg,rgba(127,29,29,.1),var(--s3))">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px"><div><div style="font-family:var(--ff-head);font-size:.82rem;font-weight:800;color:#f87171;letter-spacing:1px;text-transform:uppercase">Xback Speed</div><div style="font-size:.56rem;color:var(--t2);margin-top:1px">Tốc Độ · Tối Đa Lợi Nhuận</div></div><span class="badge badge-live">● Live</span></div>
+              <div style="font-family:var(--ff-mono);font-size:1.7rem;font-weight:700;color:var(--grn);line-height:1;margin-bottom:2px">+103%</div>
+              <div style="font-size:.56rem;color:var(--t3);font-style:italic;margin-bottom:9px">Lợi nhuận tích lũy hiện tại</div>
+              <div class="ct-stat-row" style="border-color:rgba(239,68,68,.1)"><div class="ct-stat" style="border-color:rgba(239,68,68,.1)"><span class="ct-stat-v" style="color:#f87171">72%</span><span class="ct-stat-l">Win Rate</span></div><div class="ct-stat" style="border-color:rgba(239,68,68,.1)"><span class="ct-stat-v" style="color:#f87171">15%</span><span class="ct-stat-l">Max DD</span></div><div class="ct-stat"><span class="ct-stat-v" style="color:#f87171;font-size:.75rem">Cao</span><span class="ct-stat-l">Tần Suất</span></div></div>
+              <a href="https://www.vantagemarkets.com/open-live-account/?sub1=spid_MTE3NDE5NQ%3D%3D&affid=26464721&platform=copytrading&autoCertification=false" target="_blank" style="display:block;text-align:center;padding:8px;background:linear-gradient(135deg,#7f1d1d,#ef4444,#f87171);color:#fff;font-family:var(--ff-head);font-size:.62rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;text-decoration:none;margin-top:9px;border-radius:var(--r)">Mở TK & CopyTrade →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ REVIEWS ════ -->
+    <div class="panel" id="p-reviews">
+      <div class="panel-head"><div><div class="panel-title">⭐ <span>Đánh Giá · Reviews</span></div><div class="panel-sub">Thành viên thực tế · Verified trader · XBack Capital Community</div></div><span style="font-size:.56rem;color:var(--grn);font-family:var(--ff-mono)">● 127 đánh giá</span></div>
+      <div class="reviews-summary">
+        <div class="reviews-score">4.9</div>
+        <div class="reviews-right">
+          <div class="reviews-stars-big"><span class="star-big">★</span><span class="star-big">★</span><span class="star-big">★</span><span class="star-big">★</span><span class="star-big">★</span></div>
+          <div class="reviews-count">Dựa trên 127 đánh giá từ thành viên thực tế</div>
+          <div class="reviews-bar-row"><span class="reviews-bar-lbl">5 ★</span><div class="reviews-bar-track"><div class="reviews-bar-fill" style="width:88%"></div></div><span class="reviews-bar-count">112</span></div>
+          <div class="reviews-bar-row"><span class="reviews-bar-lbl">4 ★</span><div class="reviews-bar-track"><div class="reviews-bar-fill" style="width:9%"></div></div><span class="reviews-bar-count">11</span></div>
+          <div class="reviews-bar-row"><span class="reviews-bar-lbl">3 ★</span><div class="reviews-bar-track"><div class="reviews-bar-fill" style="width:2%"></div></div><span class="reviews-bar-count">3</span></div>
+          <div class="reviews-bar-row"><span class="reviews-bar-lbl">1–2 ★</span><div class="reviews-bar-track"><div class="reviews-bar-fill" style="width:.5%"></div></div><span class="reviews-bar-count">1</span></div>
+        </div>
+      </div>
+      <div class="reviews-grid" id="reviewsGrid"></div>
+    </div>
+
+  </div><!-- .main -->
+</div><!-- .app -->
+
+<script>
+/* ═══════════════════════════════════════════════
+   STATE & CONFIG
+═══════════════════════════════════════════════ */
+const STATE={isRef:false,currentPanel:'dashboard',currentSym:'XAUUSD',currentDashTab:'free',newsFilter:'all',newsLoaded:false,chartLoaded:false,ifaiChartLoaded:false,currentTF:'240'};
+const VALID_REFS=['XBACK-VIP2024','XBACK-PRO001','XBACK-ELITE','XBACK-TEST','ref123','REF123'];
+
+const TV_SYMBOLS={
+  XAUUSD:{tv:'FX:XAUUSD',label:'XAU/USD',dec:2},
+  BTCUSDT:{tv:'BINANCE:BTCUSDT',label:'BTC/USDT',dec:0},
+  ETHUSDT:{tv:'BINANCE:ETHUSDT',label:'ETH/USDT',dec:2},
+  EURUSD:{tv:'FX:EURUSD',label:'EUR/USD',dec:5},
+  GBPUSD:{tv:'FX:GBPUSD',label:'GBP/USD',dec:5},
+  USDJPY:{tv:'FX:USDJPY',label:'USD/JPY',dec:3},
+  VN30:{tv:'HOSE:VN30',label:'VN30',dec:2},
+  HPG:{tv:'HOSE:HPG',label:'HPG',dec:2},
+};
+
+/* ═══ LIVE PRICES ═══ */
+const LIVE_PRICES={},LIVE_CHG={},SESSION_OPEN={};
+let lastUpdate=null;
+
+function fmtP(v,sym){
+  if(!v&&v!==0)return'—';
+  const d=TV_SYMBOLS[sym]?.dec??2;
+  return v.toLocaleString('vi-VN',{minimumFractionDigits:d>3?d:0,maximumFractionDigits:d>3?d:2});
+}
+function setLP(sym,p,chgPct,chgAbs,open,high,low){
+  if(!p||isNaN(p))return;
+  LIVE_PRICES[sym]=p;LIVE_CHG[sym]={change:chgPct||0,changeAbs:chgAbs||0,open:open||p,high:high||p,low:low||p};
+}
+async function fetchPrices(){
+  const t=[];
+  t.push(fetch('https://api.gold-api.com/price/XAU',{signal:AbortSignal.timeout(8000)}).then(r=>r.json()).then(d=>{const p=parseFloat(d.price);if(!SESSION_OPEN.XAUUSD)SESSION_OPEN.XAUUSD=p;const o=SESSION_OPEN.XAUUSD;setLP('XAUUSD',p,(p-o)/o*100,p-o,o);}).catch(()=>{}));
+  ['BTCUSDT','ETHUSDT'].forEach(s=>t.push(fetch(`https://api.binance.com/api/v3/ticker/24hr?symbol=${s}`,{signal:AbortSignal.timeout(8000)}).then(r=>r.json()).then(d=>setLP(s,parseFloat(d.lastPrice),parseFloat(d.priceChangePercent),parseFloat(d.priceChange),parseFloat(d.openPrice),parseFloat(d.highPrice),parseFloat(d.lowPrice))).catch(()=>{})));
+  t.push(fetch('https://api.frankfurter.app/latest?from=USD&to=EUR,GBP,JPY',{signal:AbortSignal.timeout(8000)}).then(r=>r.json()).then(d=>{const r=d.rates||{};const ap=(sym,p)=>{if(!SESSION_OPEN[sym])SESSION_OPEN[sym]=p;const o=SESSION_OPEN[sym];setLP(sym,p,(p-o)/o*100,p-o,o);};if(r.EUR)ap('EURUSD',1/r.EUR);if(r.GBP)ap('GBPUSD',1/r.GBP);if(r.JPY)ap('USDJPY',r.JPY);}).catch(()=>{}));
+  await Promise.allSettled(t);
+  lastUpdate=new Date();
+  renderPriceStrip();renderTicker();renderIFAI();
+}
+
+function renderPriceStrip(){
+  const el=document.getElementById('priceStrip');if(!el)return;
+  const syms=['XAUUSD','BTCUSDT','EURUSD','USDJPY'];
+  el.innerHTML=syms.map(sym=>{
+    const chg=LIVE_CHG[sym],p=LIVE_PRICES[sym];
+    const isUp=(chg?.change??0)>=0;
+    return`<div class="price-cell"><span class="pc-sym">${TV_SYMBOLS[sym].label}</span><span class="pc-val">${p?fmtP(p,sym):'—'}</span><span class="pc-chg ${isUp?'up':'dn'}">${isUp?'▲':'▼'} ${chg?Math.abs(chg.change).toFixed(2)+'%':'—'}</span><span class="pc-dir ${isUp?'buy':'sell'}">${isUp?'BUY':'SELL'}</span></div>`;
+  }).join('');
+}
+
+function renderTicker(){
+  const inner=document.getElementById('tickerInner');if(!inner)return;
+  const syms=Object.keys(TV_SYMBOLS);const dbl=[...syms,...syms];
+  inner.innerHTML=dbl.map(sym=>{
+    const p=LIVE_PRICES[sym],chg=LIVE_CHG[sym];
+    const isUp=(chg?.change??0)>=0;
+    return`<div class="tick-item"><span class="tick-sym">${sym}</span><span class="tick-price">${p?fmtP(p,sym):'—'}</span><span class="tick-chg ${isUp?'up':'dn'}">${isUp?'▲':'▼'} ${chg?Math.abs(chg.change).toFixed(2)+'%':'—'}</span></div>`;
+  }).join('');
+}
+
+/* ═══ INDICATOR MATH ═══ */
+const BINANCE_MAP={XAUUSD:'PAXGUSDT',BTCUSDT:'BTCUSDT',ETHUSDT:'ETHUSDT'};
+let KLINE_CACHE={};
+
+function ema(v,p){const k=2/(p+1);const out=new Array(v.length).fill(null);let prev=null;for(let i=0;i<v.length;i++){if(i<p-1){if(i===0)prev=v[0];else prev=prev+(v[i]-prev)*k;continue;}if(prev===null)prev=v.slice(0,p).reduce((a,b)=>a+b,0)/p;else prev=v[i]*k+prev*(1-k);out[i]=prev;}return out;}
+function calcRSI(closes,p=14){if(closes.length<p+2)return 50;let g=0,l=0;for(let i=1;i<=p;i++){const d=closes[i]-closes[i-1];if(d>=0)g+=d;else l-=d;}let ag=g/p,al=l/p;for(let i=p+1;i<closes.length;i++){const d=closes[i]-closes[i-1];ag=(ag*(p-1)+(d>0?d:0))/p;al=(al*(p-1)+(d<0?-d:0))/p;}return al===0?100:100-100/(1+ag/al);}
+function calcADX(h,l,c,p=14){const tr=[],pm=[],mm=[];for(let i=1;i<c.length;i++){const u=h[i]-h[i-1],d=l[i-1]-l[i];pm.push(u>d&&u>0?u:0);mm.push(d>u&&d>0?d:0);tr.push(Math.max(h[i]-l[i],Math.abs(h[i]-c[i-1]),Math.abs(l[i]-c[i-1])));}
+const ws=arr=>{const r=[];let s=arr.slice(0,p).reduce((a,b)=>a+b,0);r[p-1]=s;for(let i=p;i<arr.length;i++){s=r[i-1]-r[i-1]/p+arr[i];r[i]=s;}return r;};
+const ts=ws(tr),ps=ws(pm),ms=ws(mm);const dx=[];
+for(let i=p-1;i<tr.length;i++){if(!ts[i]||ts[i]===0){dx.push({dx:0,pdi:0,mdi:0});continue;}const pdi=100*ps[i]/ts[i],mdi=100*ms[i]/ts[i],sum=pdi+mdi;dx.push({dx:sum===0?0:100*Math.abs(pdi-mdi)/sum,pdi,mdi});}
+let adxVal=dx.slice(0,p).reduce((a,b)=>a+b.dx,0)/p;for(let i=p;i<dx.length;i++)adxVal=(adxVal*(p-1)+dx[i].dx)/p;
+const last=dx[dx.length-1]||{pdi:0,mdi:0};return{adx:adxVal,plusDI:last.pdi,minusDI:last.mdi};}
+function calcMACD(closes){const fast=ema(closes,12),slow=ema(closes,26);const ml=[];for(let i=0;i<closes.length;i++){if(fast[i]!==null&&slow[i]!==null)ml.push(fast[i]-slow[i]);else ml.push(null);}
+const ml2=ml.filter(v=>v!==null);const sig=ema(ml2,9);const hist=ml2.map((v,i)=>sig[i]!==null?v-sig[i]:null);const n=hist.length;
+return{hist:hist[n-1]||0,histPrev:hist[n-2]||0,macdLine:ml2[n-1]||0,signalLine:sig[n-1]||0};}
+function calcBB(closes,p=20,mult=2){const n=closes.length;if(n<p)return{upper:closes[n-1]*1.01,lower:closes[n-1]*.99,mid:closes[n-1],width:0,pct:50};const sl=closes.slice(n-p);const mean=sl.reduce((a,b)=>a+b,0)/p;const sd=Math.sqrt(sl.map(v=>(v-mean)**2).reduce((a,b)=>a+b,0)/p);const price=closes[n-1];return{upper:mean+mult*sd,lower:mean-mult*sd,mid:mean,width:(mult*2*sd)/mean*100,pct:sd===0?50:(price-mean-mult*sd)/(-2*mult*sd)*100+50};}
+function calcStoch(h,l,c,kp=14,dp=3){if(c.length<kp)return{k:50,d:50};const rawK=[];for(let i=kp-1;i<c.length;i++){const sl=l.slice(i-kp+1,i+1),sh=h.slice(i-kp+1,i+1);const lo=Math.min(...sl),hi=Math.max(...sh);rawK.push(hi===lo?50:(c[i]-lo)/(hi-lo)*100);}const k=rawK[rawK.length-1];const d=rawK.slice(-dp).reduce((a,b)=>a+b,0)/Math.min(dp,rawK.length);return{k,d};}
+
+function detectReversals(opens,highs,lows,closes){
+  const signals=[];const n=closes.length;
+  if(n<3)return signals;
+  for(let i=n-4;i<n;i++){
+    if(i<1)continue;
+    const o=opens[i],h=highs[i],l=lows[i],c=closes[i];
+    const body=Math.abs(c-o),range=h-l||.0001;
+    const upperWick=h-Math.max(o,c),lowerWick=Math.min(o,c)-l;
+    const isGreen=c>o,isRed=c<o;
+    const prev_c=closes[i-1],prev_o=opens[i-1];
+    const at=i===n-1?'Hiện tại':i===n-2?'Nến trước':'Nến -'+(n-1-i);
+    if(lowerWick>body*2&&upperWick<body*.5&&range>0)signals.push({type:'Hammer 🔨',dir:'bull',detail:`${at} · Lowerwick ${(lowerWick/range*100).toFixed(0)}% · Đảo chiều BUY`,entry:'BUY đảo tại close nến'});
+    if(upperWick>body*2&&lowerWick<body*.5&&range>0)signals.push({type:'Shooting Star ⭐',dir:'bear',detail:`${at} · Upperwick ${(upperWick/range*100).toFixed(0)}% · Đảo chiều SELL`,entry:'SELL đảo tại close nến'});
+    if(i>0&&isGreen&&prev_c<prev_o&&c>prev_o&&o<prev_c)signals.push({type:'Engulf Bull 🟢',dir:'bull',detail:`${at} · Nến xanh nuốt nến đỏ · BUY mạnh`,entry:'BUY tại open nến tiếp theo'});
+    if(i>0&&isRed&&prev_c>prev_o&&c<prev_o&&o>prev_c)signals.push({type:'Engulf Bear 🔴',dir:'bear',detail:`${at} · Nến đỏ nuốt nến xanh · SELL mạnh`,entry:'SELL tại open nến tiếp theo'});
+    if((lowerWick>range*.6||upperWick>range*.6)&&body<range*.25){
+      const dir=lowerWick>upperWick?'bull':'bear';
+      if(!signals.find(s=>s.type.includes('Hammer')||s.type.includes('Shooting')))
+        signals.push({type:`Pin Bar ${dir==='bull'?'🔼':'🔽'}`,dir,detail:`${at} · Rejection ${dir==='bull'?'từ đáy':'từ đỉnh'} · ${dir==='bull'?'BUY':'SELL'}`,entry:`${dir==='bull'?'BUY':'SELL'} tại body đóng cửa`});
+    }
+  }
+  return signals.slice(0,6);
+}
+
+const DEMO_DATA={
+  XAUUSD:{rsi:58,adx:27.5,pdi:23,mdi:13.5,hist:.8,histPrev:.4,macdLine:1.2,sigLine:.9,bbPct:62,bbW:2.1,stochK:65,stochD:60,smaOp:true,op:3310},
+  BTCUSDT:{rsi:54,adx:24,pdi:20,mdi:16,hist:.6,histPrev:.3,macdLine:.8,sigLine:.6,bbPct:56,bbW:3.5,stochK:58,stochD:55,smaOp:true,op:96500},
+  ETHUSDT:{rsi:56,adx:26,pdi:22,mdi:13,hist:.5,histPrev:.2,macdLine:.7,sigLine:.5,bbPct:58,bbW:3.2,stochK:60,stochD:57,smaOp:true,op:1700},
+  EURUSD:{rsi:38.5,adx:23,pdi:12,mdi:19,hist:-.4,histPrev:-.2,macdLine:-.6,sigLine:-.4,bbPct:34,bbW:1.8,stochK:32,stochD:36,smaOp:false,op:1.1120},
+  GBPUSD:{rsi:52,adx:16,pdi:18,mdi:15,hist:-.1,histPrev:.1,macdLine:.2,sigLine:.3,bbPct:50,bbW:1.5,stochK:50,stochD:52,smaOp:true,op:1.2700},
+  USDJPY:{rsi:35,adx:27,pdi:11,mdi:22,hist:-.8,histPrev:-.5,macdLine:-1.2,sigLine:-.9,bbPct:28,bbW:2.4,stochK:22,stochD:28,smaOp:false,op:155.0},
+  VN30:{rsi:53,adx:17,pdi:19,mdi:16,hist:.2,histPrev:.1,macdLine:.4,sigLine:.3,bbPct:52,bbW:1.6,stochK:54,stochD:51,smaOp:true,op:1290},
+  HPG:{rsi:61.2,adx:28,pdi:22,mdi:10,hist:1.1,histPrev:.7,macdLine:2.1,sigLine:1.5,bbPct:68,bbW:2.8,stochK:70,stochD:65,smaOp:true,op:27000},
+};
+
+async function loadKlines(sym){
+  const binSym=BINANCE_MAP[sym];if(!binSym)return;
+  if(KLINE_CACHE[sym])return;
+  try{
+    const r=await fetch(`https://api.binance.com/api/v3/klines?symbol=${binSym}&interval=4h&limit=300`,{signal:AbortSignal.timeout(10000)});
+    if(!r.ok)return;const raw=await r.json();if(!Array.isArray(raw)||raw.length<50)return;
+    KLINE_CACHE[sym]={closes:raw.map(k=>parseFloat(k[4])),highs:raw.map(k=>parseFloat(k[2])),lows:raw.map(k=>parseFloat(k[3])),opens:raw.map(k=>parseFloat(k[1]))};
+  }catch(e){}
+}
+
+function computeIndicators(sym){
+  const kd=KLINE_CACHE[sym];const dd=DEMO_DATA[sym]||DEMO_DATA.XAUUSD;
+  const price=LIVE_PRICES[sym]||0;
+  const op=SESSION_OPEN[sym]||price||dd.op;
+  const opHit=price>0?(price>op):(dd.smaOp);
+  let rsi=dd.rsi,adx=dd.adx,pdi=dd.pdi,mdi=dd.mdi,hist=dd.hist,histPrev=dd.histPrev,macdLine=dd.macdLine,sigLine=dd.sigLine;
+  let bbPct=dd.bbPct,bbW=dd.bbW,stochK=dd.stochK,stochD=dd.stochD;
+  let closes=null,highs=null,lows=null,opens=null;
+  if(kd){closes=kd.closes;highs=kd.highs;lows=kd.lows;opens=kd.opens;rsi=calcRSI(closes);const adxR=calcADX(highs,lows,closes);adx=adxR.adx;pdi=adxR.plusDI;mdi=adxR.minusDI;const macdR=calcMACD(closes);hist=macdR.hist;histPrev=macdR.histPrev;macdLine=macdR.macdLine;sigLine=macdR.signalLine;const bbR=calcBB(closes);bbPct=bbR.pct;bbW=bbR.width;const stR=calcStoch(highs,lows,closes);stochK=stR.k;stochD=stR.d;}
+  const isBuy=opHit;
+  const rsiStat=isBuy&&rsi>55?'bull':!isBuy&&rsi<45?'bear':'neut';
+  const adxStrong=adx>25;const adxDirOk=isBuy?pdi>mdi:mdi>pdi;
+  const adxStat=adxStrong&&adxDirOk?(isBuy?'bull':'bear'):'neut';
+  const macdStat=hist>0&&hist>histPrev?'bull':hist<0&&hist<histPrev?'bear':'neut';
+  const opStat=opHit?'bull':'bear';
+  const bbStat=bbPct>80?'bear':bbPct<20?'bull':'neut';
+  const stBull=stochK>stochD&&stochK<80&&stochK>20,stBear=stochK<stochD&&stochK>20&&stochK<80;
+  const stRevBull=stochK<20,stRevBear=stochK>80;
+  const stochStat=stRevBull?'bull':stRevBear?'bear':stBull?'bull':stBear?'bear':'neut';
+  const bullScore=[opStat==='bull',rsiStat==='bull',adxStat==='bull',macdStat==='bull',bbStat==='bull',stochStat==='bull'].filter(Boolean).length;
+  const bearScore=[opStat==='bear',rsiStat==='bear',adxStat==='bear',macdStat==='bear',bbStat==='bear',stochStat==='bear'].filter(Boolean).length;
+  let mode,modeClass,summary;
+  if(bullScore>=4){mode=`▲ BUY [${bullScore}/6]`;modeClass='buy';summary=`${bullScore}/6 chỉ số xác nhận BUY. ${bullScore>=5?'Tín hiệu rất mạnh!':'Chờ PA xác nhận.'}`;}
+  else if(bearScore>=4){mode=`▼ SELL [${bearScore}/6]`;modeClass='sell';summary=`${bearScore}/6 chỉ số xác nhận SELL. ${bearScore>=5?'Tín hiệu rất mạnh!':'Chờ PA xác nhận.'}`;}
+  else if(bullScore>bearScore){mode=`▲ BUY NHẸ [${bullScore}/6]`;modeClass='buy';summary=`Thiên BUY nhẹ (${bullScore} vs ${bearScore}). Cần thêm PA.`;}
+  else if(bearScore>bullScore){mode=`▼ SELL NHẸ [${bearScore}/6]`;modeClass='sell';summary=`Thiên SELL nhẹ (${bearScore} vs ${bullScore}). Cần thêm PA.`;}
+  else{mode='⟺ SIDEWAY';modeClass='watch';summary='Chỉ số trung tính. Đợi breakout hoặc PA rõ.';}
+  let reversals=closes&&highs&&lows&&opens?detectReversals(opens,highs,lows,closes):[
+    {type:'Pin Bar 🔼',dir:'bull',detail:'Nến trước · Rejection từ đáy · BUY tín hiệu',entry:'BUY tại body đóng cửa'},
+    {type:'Engulf Bull 🟢',dir:'bull',detail:'Nến -2 · Nến xanh nuốt nến đỏ · BUY mạnh',entry:'BUY tại open nến tiếp theo'},
+  ];
+  return{rsi,adx,pdi,mdi,hist,histPrev,macdLine,sigLine,bbPct,bbW,stochK,stochD,opHit,isBuy,price,op,rsiStat,adxStat,macdStat,opStat,bbStat,stochStat,bullScore,bearScore,mode,modeClass,summary,reversals,adxStrong};
+}
+
+/* ═══ BUILD STAR CHIPS ═══ */
+function buildStars(d,sym){
+  const stars=[];
+  if(d.modeClass==='buy'&&d.bullScore>=4){
+    const strength=d.bullScore>=5?'⭐⭐⭐':'⭐⭐';
+    stars.push({cls:'bull',ico:strength,txt:`BUY ${d.bullScore}/6 · ${sym}`});
+  }else if(d.modeClass==='sell'&&d.bearScore>=4){
+    const strength=d.bearScore>=5?'⭐⭐⭐':'⭐⭐';
+    stars.push({cls:'bear',ico:strength,txt:`SELL ${d.bearScore}/6 · ${sym}`});
+  }
+  if(d.reversals&&d.reversals.length>0){
+    const rev=d.reversals[0];
+    stars.push({cls:rev.dir==='bull'?'bull':'bear',ico:'⭐',txt:`${rev.type} Đảo chiều`});
+  }
+  if(d.bbPct>78||d.bbPct<22){
+    stars.push({cls:d.bbPct>78?'bear':'bull',ico:'⭐',txt:`BB ${d.bbPct>78?'Upper':'Lower'} → ${d.bbPct>78?'SELL':'BUY'} đảo`});
+  }
+  if(d.stochK>80||d.stochK<20){
+    stars.push({cls:d.stochK>80?'bear':'bull',ico:'⭐',txt:`Stoch ${d.stochK>80?'OB':'OS'} → Đảo chiều`});
+  }
+  return stars;
+}
+
+/* ═══ RENDER STAR SIGNALS (free tab bottom of chart) ═══ */
+function renderStarSignals(d,sym){
+  const el=document.getElementById('starSignals');if(!el)return;
+  const stars=buildStars(d,sym);
+  if(stars.length===0){
+    el.innerHTML=`<span class="star-signals-lbl">★ STAR SIGNALS</span><span style="font-size:.52rem;color:var(--t3);font-family:var(--ff-mono)">Chưa có tín hiệu nổi bật · Chờ hội tụ chỉ số...</span>`;
+  }else{
+    el.innerHTML=`<span class="star-signals-lbl">★ STARS</span>`+stars.map(s=>`<div class="star-chip ${s.cls}"><span class="star-chip-ico">${s.ico}</span><span class="star-chip-txt">${s.txt}</span></div>`).join('');
+  }
+}
+
+/* ═══ RENDER STAR OVERLAY ON IFAI CHART ═══ */
+function renderIFAIStarOverlay(d,sym){
+  const el=document.getElementById('ifaiStarOverlay');if(!el)return;
+  const stars=buildStars(d,sym);
+  if(stars.length===0){
+    el.innerHTML=`<span style="font-size:.44rem;font-weight:700;letter-spacing:2px;color:rgba(168,85,247,.5);text-transform:uppercase">★ STARS</span><span style="font-size:.5rem;color:rgba(255,255,255,.2);font-family:var(--ff-mono)">Chờ hội tụ...</span>`;
+  }else{
+    el.innerHTML=`<span style="font-size:.44rem;font-weight:700;letter-spacing:2px;color:rgba(168,85,247,.6);text-transform:uppercase">★ STARS</span>`+stars.map(s=>`<div class="star-chip ${s.cls}" style="pointer-events:none"><span class="star-chip-ico">${s.ico}</span><span class="star-chip-txt">${s.txt}</span></div>`).join('');
+  }
+}
+
+/* ═══ OP LABEL (free) ═══ */
+function updateOPLabel(d){
+  const el=document.getElementById('opLabelVal');if(!el)return;
+  el.textContent=fmtP(d.op,STATE.currentSym)||'—';
+  el.style.color=d.opHit?'#4ade80':'#f87171';
+}
+
+/* ═══ IFAI DASHBOARD RENDER ═══ */
+function renderIFAIDetail(d){
+  const sym=STATE.currentSym;
+  const sl={bull:'BUY ▲',bear:'SELL ▼',neut:'TRUNG LẬP'};
+  const rsiC=d.rsiStat==='bull'?'buy-c':d.rsiStat==='bear'?'sell-c':'neu-c';
+  const adxC=d.adxStat==='bull'?'buy-c':d.adxStat==='bear'?'sell-c':'neu-c';
+  const macdC=d.macdStat==='bull'?'buy-c':d.macdStat==='bear'?'sell-c':'neu-c';
+  const opC=d.opStat==='bull'?'buy-c':'sell-c';
+
+  // Mode bar
+  const mb=document.getElementById('ifaiModeBig');const ms=document.getElementById('ifaiModeScore');
+  if(mb){mb.className='mode-big '+d.modeClass;mb.textContent=d.mode;}
+  if(ms)ms.textContent=`${sym} · ${lastUpdate?lastUpdate.toLocaleTimeString('vi-VN'):'—'} · ${KLINE_CACHE[sym]?'Binance Realtime':'Demo Data'}`;
+
+  // OP label on chart
+  const opv=document.getElementById('ifaiOpVal');
+  if(opv){opv.textContent=fmtP(d.op,sym)||'—';opv.style.color=d.opHit?'#4ade80':'#f87171';}
+
+  // 4 main indicators
+  const grid=document.getElementById('indGrid');
+  if(grid){grid.innerHTML=`
+  <div class="ind4"><div class="ind4-hdr"><div class="ind4-name">📅 OP · Daily Open</div><div class="ind4-stat ${d.opStat}">${sl[d.opStat]}</div></div>
+  <div class="ind4-val ${opC}">${d.price>0?fmtP(d.price,sym):'—'}</div>
+  <div class="ind4-detail">OP: <strong>${fmtP(d.op,sym)}</strong><br>Giá ${d.opHit?'TRÊN':'DƯỚI'} OP → ${d.opHit?'ưu tiên BUY':'ưu tiên SELL'}</div>
+  <div class="ind4-sub">Trục trọng lực · Kéo ngược khi quá xa</div>
+  <div class="ind-bar"><div class="ind-bar-fill ${d.opStat==='bull'?'buy-bar':'sell-bar'}" style="width:${d.opHit?70:30}%"></div></div></div>
+  <div class="ind4"><div class="ind4-hdr"><div class="ind4-name">📈 RSI · Momentum</div><div class="ind4-stat ${d.rsiStat}">${sl[d.rsiStat]}</div></div>
+  <div class="ind4-val ${rsiC}">${d.rsi.toFixed(1)}</div>
+  <div class="ind4-detail">${d.rsi>70?'⚠️ Quá mua — cẩn thận SELL':d.rsi>60?'✓ BUY momentum mạnh':d.rsi<30?'⚠️ Quá bán — cẩn thận BUY':d.rsi<40?'✓ SELL momentum mạnh':'Trung tính 40–60'}<br>Level 70: Quá mua · Level 30: Quá bán</div>
+  <div class="ind4-sub">RSI(14) · Biên 30–70</div>
+  <div class="ind-bar"><div class="ind-bar-fill ${d.rsi>70?'sell-bar':d.rsi<30?'buy-bar':d.rsiStat==='bull'?'buy-bar':d.rsiStat==='bear'?'sell-bar':'neu-bar'}" style="width:${d.rsi}%"></div></div></div>
+  <div class="ind4"><div class="ind4-hdr"><div class="ind4-name">💹 MACD · Trend</div><div class="ind4-stat ${d.macdStat}">${sl[d.macdStat]}</div></div>
+  <div class="ind4-val ${macdC}">${d.hist>=0?'+':''}${d.hist.toFixed(3)}</div>
+  <div class="ind4-detail">Hist: ${d.hist>=0?'📈 Dương':'📉 Âm'} ${Math.abs(d.hist)>Math.abs(d.histPrev)?'↑ tăng':'↓ giảm'}<br>MACD: ${d.macdLine.toFixed(3)} · Sig: ${d.sigLine.toFixed(3)}</div>
+  <div class="ind4-sub">MACD(12,26,9) · Histogram co thắt = đảo</div>
+  <div class="ind-bar"><div class="ind-bar-fill ${d.hist>=0?'buy-bar':'sell-bar'}" style="width:${Math.min(Math.abs(d.hist)*20,100)}%"></div></div></div>
+  <div class="ind4"><div class="ind4-hdr"><div class="ind4-name">💎 ADX · Lực TT</div><div class="ind4-stat ${d.adxStat}">${sl[d.adxStat]}</div></div>
+  <div class="ind4-val ${adxC}">${d.adx.toFixed(1)}</div>
+  <div class="ind4-detail">${d.adx>40?'⚡ Quá đà (>40) — cẩn thận':d.adx>25?`✓ Có xu hướng · ${d.pdi>d.mdi?'+DI':'-DI'} ưu thế`:'Sideway (<25) — không trend'}<br>+DI: ${d.pdi.toFixed(1)} · -DI: ${d.mdi.toFixed(1)}</div>
+  <div class="ind4-sub">ADX(14) · 25: có trend · 40: quá đà</div>
+  <div class="ind-bar"><div class="ind-bar-fill ${d.adxStat==='bull'?'buy-bar':d.adxStat==='bear'?'sell-bar':'neu-bar'}" style="width:${Math.min(d.adx,100)}%"></div></div></div>`;}
+
+  // Extra BB + Stoch
+  const extra=document.getElementById('extraGrid');
+  if(extra){extra.innerHTML=`
+  <div class="extra-ind"><div class="extra-ico">📊</div><div class="extra-body"><div class="extra-name">Bollinger Bands (20, 2σ)</div>
+  <div class="extra-val" style="color:${d.bbStat==='bull'?'#4ade80':d.bbStat==='bear'?'#f87171':'var(--g1)'}">${d.bbPct.toFixed(0)}% · Width ${d.bbW.toFixed(1)}%</div>
+  <div class="extra-detail">${d.bbPct>80?'⚠️ Chạm Upper BB · Quá mua':d.bbPct<20?'⚠️ Chạm Lower BB · Quá bán':d.bbW<1.2?'🔥 BB Squeeze — sắp breakout':'Giữa BB · Bình thường'}</div></div>
+  <div class="extra-badge ${d.bbStat}">${d.bbStat==='bull'?'BUY ▲':d.bbStat==='bear'?'SELL ▼':'NEUT'}</div></div>
+  <div class="extra-ind"><div class="extra-ico">🔄</div><div class="extra-body"><div class="extra-name">Stochastic (14, 3, 3)</div>
+  <div class="extra-val" style="color:${d.stochStat==='bull'?'#4ade80':d.stochStat==='bear'?'#f87171':'var(--g1)'}">%K ${d.stochK.toFixed(1)} · %D ${d.stochD.toFixed(1)}</div>
+  <div class="extra-detail">${d.stochK>80?'⚠️ Quá mua — chờ %K cắt %D xuống':d.stochK<20?'⚠️ Quá bán — chờ %K cắt %D lên':d.stochK>d.stochD?'%K trên %D — BUY':'%K dưới %D — SELL'}</div></div>
+  <div class="extra-badge ${d.stochStat}">${d.stochStat==='bull'?'BUY ▲':d.stochStat==='bear'?'SELL ▼':'NEUT'}</div></div>`;}
+
+  // Reversals
+  const rg=document.getElementById('revGrid');const rc=document.getElementById('revCount');
+  if(rg){
+    if(!d.reversals||d.reversals.length===0){rg.innerHTML=`<div style="grid-column:span 3;text-align:center;padding:10px;font-size:.63rem;color:var(--t3)">Không phát hiện nến đảo chiều tại 4H. Chờ xác nhận...</div>`;if(rc)rc.textContent='Không phát hiện';}
+    else{rg.innerHTML=d.reversals.map(r=>`<div class="rev-card ${r.dir}"><div class="rev-lbl">${sym} · ${r.dir==='bull'?'BUY ĐẢO':'SELL ĐẢO'}</div><div class="rev-pat ${r.dir}">${r.type}</div><div class="rev-detail">${r.detail}</div><div class="rev-entry ${r.dir}">${r.entry}</div></div>`).join('');if(rc)rc.textContent=`Phát hiện ${d.reversals.length} tín hiệu`;}
+  }
+
+  // Summary ring
+  const score=Math.max(d.bullScore,d.bearScore);
+  const circum=2*Math.PI*20,dash=(score/6*circum).toFixed(1);
+  const rc2=d.modeClass==='buy'?'#4ade80':d.modeClass==='sell'?'#f87171':'#F0C04A';
+  const sb=document.getElementById('sumBar');
+  if(sb){sb.innerHTML=`<div class="sum-ring"><svg width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="4"/><circle cx="24" cy="24" r="20" fill="none" stroke="${rc2}" stroke-width="4" stroke-dasharray="${dash} ${circum.toFixed(1)}" stroke-linecap="round" transform="rotate(-90 24 24)"/></svg><div class="sum-inner"><span class="sum-num" style="color:${rc2}">${score}</span><span class="sum-denom">/6</span></div></div><div class="sum-text"><div class="sum-verdict ${d.modeClass}">${d.mode}</div><div class="sum-reason">${d.summary}</div></div><div class="sum-time">⏱ ${lastUpdate?lastUpdate.toLocaleTimeString('vi-VN'):'—'}<br><span style="color:${KLINE_CACHE[sym]?'var(--grn)':'var(--g2)'}">● ${KLINE_CACHE[sym]?'Binance RT':'Demo'}</span></div>`;}
+}
+
+/* ═══ MAIN IFAI RENDER ═══ */
+function renderIFAI(){
+  const sym=STATE.currentSym;
+  const d=computeIndicators(sym);
+  renderStarSignals(d,sym);
+  updateOPLabel(d);
+  updateChartOverlays(d,sym);
+  if(STATE.isRef){
+    renderIFAIStarOverlay(d,sym);
+    renderIFAIDetail(d,sym);
+  }
+}
+
+/* ═══ CHART OVERLAYS (new) ═══ */
+function updateChartOverlays(d,sym){
+  const modeC=d.modeClass||'watch';
+  const modeT=d.mode||'WATCH';
+  const score=Math.max(d.bullScore||0,d.bearScore||0);
+  const starCount=score>=5?3:score>=3?2:score>=1?1:0;
+  const starsHTML=Array(3).fill(0).map((_,i)=>`<span class="cio-star ${i<starCount?'on':'off'}">⭐</span>`).join('');
+  const rsiC=d.rsi>60?'buy':d.rsi<40?'sell':'neu';
+  const macdC=d.macdStat==='bull'?'buy':d.macdStat==='bear'?'sell':'neu';
+  const adxC=d.adx>25?'buy':'neu';
+  const bbC=d.bbStat==='bull'?'buy':d.bbStat==='bear'?'sell':'neu';
+  const stochC=d.stochStat==='bull'?'buy':d.stochStat==='bear'?'sell':'neu';
+  const opVal=d.op?fmtP(d.op,sym):'—';
+  const scoreLabel=`${score}/6 chỉ số hội tụ · ${modeT}`;
+
+  // Update free overlay
+  const fv=document.getElementById('freeOverlayVerdict');if(fv){fv.className='cio-verdict '+modeC;fv.textContent=modeT;}
+  const fs=document.getElementById('freeOverlayScore');if(fs)fs.textContent=scoreLabel;
+  const fst=document.getElementById('freeOverlayStars');if(fst)fst.innerHTML=starsHTML;
+  const frsi=document.getElementById('fov-rsi');if(frsi){frsi.className='cio-ind-val '+rsiC;frsi.textContent=d.rsi?d.rsi.toFixed(1):'—';}
+  const fmacd=document.getElementById('fov-macd');if(fmacd){fmacd.className='cio-ind-val '+macdC;fmacd.textContent=d.macdHist?(d.macdHist>0?'▲':' ▼')+Math.abs(d.macdHist).toFixed(2):'—';}
+  const fadx=document.getElementById('fov-adx');if(fadx){fadx.className='cio-ind-val '+adxC;fadx.textContent=d.adx?d.adx.toFixed(1):'—';}
+  const fbb=document.getElementById('fov-bb');if(fbb){fbb.className='cio-ind-val '+bbC;fbb.textContent=d.bbPct?d.bbPct.toFixed(0)+'%':'—';}
+  const fop=document.getElementById('fov-op');if(fop)fop.textContent=opVal;
+
+  // Update free star strip
+  const fstrip=document.getElementById('freeStarStrip');
+  if(fstrip) renderStarStrip(fstrip,d,sym,'css');
+
+  // Update IFAI overlays (if visible)
+  const iv=document.getElementById('ifaiOverlayVerdict');if(iv){iv.className='cio-verdict '+modeC;iv.textContent=modeT;}
+  const is=document.getElementById('ifaiOverlayScore');if(is)is.textContent=scoreLabel;
+  const ist=document.getElementById('ifaiOverlayStars');if(ist)ist.innerHTML=starsHTML;
+  const irsi=document.getElementById('iov-rsi');if(irsi){irsi.className='cio-ind-val '+rsiC;irsi.textContent=d.rsi?d.rsi.toFixed(1):'—';}
+  const imacd=document.getElementById('iov-macd');if(imacd){imacd.className='cio-ind-val '+macdC;imacd.textContent=d.macdHist?(d.macdHist>0?'▲':' ▼')+Math.abs(d.macdHist).toFixed(2):'—';}
+  const iadx=document.getElementById('iov-adx');if(iadx){iadx.className='cio-ind-val '+adxC;iadx.textContent=d.adx?d.adx.toFixed(1):'—';}
+  const ibb=document.getElementById('iov-bb');if(ibb){ibb.className='cio-ind-val '+bbC;ibb.textContent=d.bbPct?d.bbPct.toFixed(0)+'%':'—';}
+  const istoch=document.getElementById('iov-stoch');if(istoch){istoch.className='cio-ind-val '+stochC;istoch.textContent=d.stochK?d.stochK.toFixed(0):'—';}
+  const iop=document.getElementById('iov-op');if(iop)iop.textContent=opVal;
+
+  // Update IFAI star strip
+  const istrip=document.getElementById('ifaiStarStrip');
+  if(istrip) renderStarStrip(istrip,d,sym,'css');
+}
+
+function renderStarStrip(el,d,sym,pfx){
+  const modeC=d.modeClass||'watch';
+  const lbl=el.querySelector('.css-lbl')||el.querySelector('span');
+  const chips=[];
+  if(d.bullScore>=3) chips.push(`<div class="css-chip bull"><span>${'⭐'.repeat(Math.min(d.bullScore,3))} BUY · ${d.bullScore}/6</span></div>`);
+  else if(d.bearScore>=3) chips.push(`<div class="css-chip bear"><span>${'⭐'.repeat(Math.min(d.bearScore,3))} SELL · ${d.bearScore}/6</span></div>`);
+  else chips.push(`<div class="css-chip watch"><span>⏳ CHỜ · ${Math.max(d.bullScore||0,d.bearScore||0)}/6</span></div>`);
+  if(d.adx>25) chips.push(`<div class="css-chip ${modeC==='buy'?'bull':modeC==='sell'?'bear':'watch'}"><span>ADX ${d.adx.toFixed(0)}</span></div>`);
+  if(d.rsi>65) chips.push(`<div class="css-chip bear"><span>RSI ${d.rsi.toFixed(0)} OB</span></div>`);
+  else if(d.rsi<35) chips.push(`<div class="css-chip bull"><span>RSI ${d.rsi.toFixed(0)} OS</span></div>`);
+  const labelEl=el.querySelector('.css-lbl');
+  el.innerHTML=(labelEl?labelEl.outerHTML:'<span class="css-lbl">★ SIGNALS</span>')+chips.join('');
+}
+
+async function refreshAll(){
+  toast('🤖 Đang tải...');
+  await loadKlines(STATE.currentSym);
+  await fetchPrices();
+  renderIFAI();
+  toast('✅ Cập nhật xong!');
+}
+
+/* ═══ TIMEFRAME SWITCHER ═══ */
+function switchTF(tf, barId, chartId, isIfai){
+  STATE.currentTF = tf;
+  // Update active button
+  document.querySelectorAll('#'+barId+' .tf-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  // Reload the chart with new interval
+  if(isIfai) loadIFAIChart(STATE.currentSym);
+  else loadChart(STATE.currentSym);
+  // Update live label
+  const lbl=document.getElementById('tfLiveLbl');
+  if(lbl){const map={'5':'5M','15':'15M','60':'1H','240':'4H','D':'1D','W':'1W'};lbl.textContent=(map[tf]||tf)+' · LIVE';}
+}
+
+/* ═══ CHARTS ═══ */
+const TV_MAP={XAUUSD:'FX:XAUUSD',BTCUSDT:'BINANCE:BTCUSDT',ETHUSDT:'BINANCE:ETHUSDT',EURUSD:'FX:EURUSD',GBPUSD:'FX:GBPUSD',USDJPY:'FX:USDJPY',VN30:'HOSE:VN30',HPG:'HOSE:HPG'};
+
+/* FREE chart — only Heikin Ashi, clean, no indicators (OP shown as HTML label) */
+function loadChart(sym){
+  const c=document.getElementById('dashChart');if(!c)return;
+  const old=c.querySelector('.tradingview-widget-container');if(old)c.removeChild(old);
+  const div=document.createElement('div');div.className='tradingview-widget-container';div.style.cssText='height:100%;width:100%';
+  div.innerHTML='<div class="tradingview-widget-container__widget" style="height:calc(100% - 4px);width:100%"></div>';
+  c.appendChild(div);
+  const s=document.createElement('script');s.src='https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';s.async=true;
+  s.textContent=JSON.stringify({
+    autosize:true,symbol:TV_MAP[sym]||'FX:XAUUSD',interval:STATE.currentTF||'240',
+    timezone:'Asia/Ho_Chi_Minh',theme:'dark',style:'8',locale:'vi_VN',
+    hide_top_toolbar:false,hide_legend:false,allow_symbol_change:false,
+    save_image:false,isTransparent:true,
+    studies:[],
+    studies_overrides:{}
+  });
+  div.appendChild(s);
+}
+
+/* IFAI chart — Heikin Ashi + RSI + MACD + ADX + BB + Stoch (full) */
+function loadIFAIChart(sym){
+  const c=document.getElementById('ifaiChart');if(!c)return;
+  const old=c.querySelector('.tradingview-widget-container');if(old)c.removeChild(old);
+  const div=document.createElement('div');div.className='tradingview-widget-container';div.style.cssText='height:100%;width:100%';
+  div.innerHTML='<div class="tradingview-widget-container__widget" style="height:calc(100% - 4px);width:100%"></div>';
+  c.appendChild(div);
+  const s=document.createElement('script');s.src='https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';s.async=true;
+  s.textContent=JSON.stringify({
+    autosize:true,symbol:TV_MAP[sym]||'FX:XAUUSD',interval:STATE.currentTF||'240',
+    timezone:'Asia/Ho_Chi_Minh',theme:'dark',style:'8',locale:'vi_VN',
+    hide_top_toolbar:false,hide_legend:false,allow_symbol_change:false,
+    save_image:false,isTransparent:true,
+    studies:[
+      'RSI@tv-basicstudies',
+      'MACD@tv-basicstudies',
+      'ADX@tv-basicstudies',
+      'BB@tv-basicstudies',
+      'Stochastic@tv-basicstudies',
+    ],
+    studies_overrides:{
+      'RSI.RSI.length':14,'RSI.overbought':70,'RSI.oversold':30,
+      'MACD.fast length':12,'MACD.slow length':26,'MACD.signal smoothing':9,
+      'ADX.length':14,'BB.length':20,'BB.mult':2,
+      'Stochastic.length':14,'Stochastic.smooth K':3,'Stochastic.smooth D':3,
+    }
+  });
+  div.appendChild(s);
+  STATE.ifaiChartLoaded=true;
+}
+
+async function switchChart(btn,sym){
+  document.querySelectorAll('.csym-btn').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  STATE.currentSym=sym;
+  STATE.ifaiChartLoaded=false;
+  loadChart(sym);
+  if(STATE.isRef&&STATE.currentDashTab==='ifai')loadIFAIChart(sym);
+  await loadKlines(sym);
+  renderIFAI();
+}
+
+/* ═══ DASH TAB SWITCHER ═══ */
+function switchDashTab(tab){
+  STATE.currentDashTab=tab;
+  document.querySelectorAll('.dash-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.dash-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  document.getElementById('dc-'+tab).classList.add('active');
+
+  if(tab==='ifai'){
+    if(!STATE.isRef){
+      document.getElementById('ifaiLockWall').style.display='block';
+      document.getElementById('ifaiUnlocked').style.display='none';
+    }else{
+      document.getElementById('ifaiLockWall').style.display='none';
+      document.getElementById('ifaiUnlocked').style.display='block';
+      if(!STATE.ifaiChartLoaded)loadIFAIChart(STATE.currentSym);
+      renderIFAI();
+    }
+  }
+}
+
+/* ═══ REF UNLOCK ═══ */
+function activateRef(){
+  const code=document.getElementById('refInput').value.trim().toUpperCase();
+  const errEl=document.getElementById('refError'),sucEl=document.getElementById('refSuccess');
+  errEl.style.display='none';sucEl.style.display='none';
+  if(!code){errEl.textContent='Vui lòng nhập mã ref.';errEl.style.display='block';return;}
+  if(VALID_REFS.includes(code)){
+    STATE.isRef=true;localStorage.setItem('xback_ref',code);sucEl.style.display='block';
+    setTimeout(()=>{closeModal('modalRef');unlockContent();toast('✅ Ref kích hoạt! IF AI Tab đã mở!');},1000);
+  }else{errEl.textContent='Mã không hợp lệ. Liên hệ @xbackthanhdat.';errEl.style.display='block';}
+}
+
+function unlockContent(){
+  STATE.isRef=true;
+  document.getElementById('sbName').textContent='Thành Viên Ref';
+  document.getElementById('sbBadge').textContent='VIP';document.getElementById('sbBadge').classList.remove('free');
+  document.getElementById('topRefBtn').textContent='✓ VIP';
+  const cb=document.getElementById('callBadge');if(cb){cb.textContent='● Live';cb.classList.remove('lock');cb.classList.add('new');}
+  const rtb=document.getElementById('callRTBadge');if(rtb){rtb.textContent='● Realtime';rtb.className='badge badge-live';}
+  // If currently on IFAI tab, unlock it
+  if(STATE.currentDashTab==='ifai')switchDashTab('ifai');
+  renderIFAI();
+}
+
+function checkStoredRef(){
+  const s=localStorage.getItem('xback_ref');
+  if(s&&VALID_REFS.includes(s)){const ri=document.getElementById('refInput');if(ri)ri.value=s;STATE.isRef=true;}
+}
+
+/* ═══ CALL GROUP ═══ */
+const CALL_DATA=[
+  {sym:'XAUUSD',dir:'buy',entry:'Vùng Support 4H · HA Đảo',sl:'ATR×1.5',tp1:'1:1',tp2:'1:2',result:'TP2 ✓',time:'Hôm qua 14:30'},
+  {sym:'BTCUSDT',dir:'buy',entry:'Vùng Support 4H · Engulf Bull',sl:'ATR×1.5',tp1:'1:1',tp2:'1:2',result:'TP1 ✓',time:'Hôm qua 09:15'},
+  {sym:'USDJPY',dir:'sell',entry:'Vùng Resistance · Shooting Star',sl:'ATR×1.5',tp1:'1:1',tp2:'1:2',result:'TP2 ✓',time:'2 ngày trước'},
+  {sym:'EURUSD',dir:'sell',entry:'Vùng Resistance · Pin Bar',sl:'ATR×1.5',tp1:'1:1',tp2:'1:2',result:'SL ✗',time:'2 ngày trước'},
+  {sym:'HPG',dir:'buy',entry:'Vùng Support D1 · Hammer',sl:'ATR×1.5',tp1:'1:1',tp2:'1:2',result:'TP2 ✓',time:'3 ngày trước'},
+  {sym:'ETHUSDT',dir:'buy',entry:'BB Lower + RSI<30 · BUY đảo',sl:'ATR×1.5',tp1:'1:1',tp2:'1:2',result:'TP1 ✓',time:'4 ngày trước'},
+];
+function renderCallGroup(){
+  const el=document.getElementById('callGroupList');if(!el)return;
+  el.innerHTML=CALL_DATA.map(c=>`<div class="call-card"><div class="call-bar ${c.dir}"></div><div class="call-inner"><div class="call-head"><span class="call-sym" style="color:${c.dir==='buy'?'var(--grn)':'var(--red)'}">${c.sym}</span><div class="call-dir ${c.dir}">${c.dir==='buy'?'▲ BUY':'▼ SELL'}</div><span class="call-time">📅 ${c.time}</span><span class="call-result ${c.result.includes('✓')?'win':'sl'}">${c.result}</span></div><div class="call-levels"><div class="cll"><span class="cll-lbl">Entry</span><span class="cll-val" style="color:var(--g1);font-size:.56rem">${c.entry}</span></div><div class="cll"><span class="cll-lbl">SL</span><span class="cll-val" style="color:var(--red)">${c.sl}</span></div><div class="cll"><span class="cll-lbl">TP1</span><span class="cll-val" style="color:var(--grn)">${c.tp1}</span></div><div class="cll"><span class="cll-lbl">TP2</span><span class="cll-val" style="color:var(--grn)">${c.tp2}</span></div></div></div></div>`).join('');
+}
+
+/* ═══ NEWS ═══ */
+let NEWS=[],NEWS_LOADING=false,NEWS_FILTER='all';
+function stripH(h){const t=document.createElement('div');t.innerHTML=h||'';return(t.textContent||'').replace(/\s+/g,' ').trim();}
+function impactLevel(title){return/surge|plunge|breaking|crash|fomc|fed|nfp|cpi|gdp|rate|tăng mạnh|giảm mạnh|khẩn/i.test(title)?'high':/meeting|policy|report|data|index|pmi|ism|housing/i.test(title)?'med':'low';}
+function catOf(src,title){if(/cafef|vn30|hnx|hose|vnindex/i.test(src+title))return'vn';if(/bitcoin|crypto|eth|bnb|binance|coindesk/i.test(src+title))return'crypto';return'forex';}
+
+const FF_FALLBACK=[
+  {time:'08:30',curr:'USD',event:'Non-Farm Payrolls (May)',impact:'high',actual:'+185K',forecast:'+178K',actual_dir:'pos',summary:'NF cao hơn dự báo — USD mạnh · Kháng lực cho XAU/USD',cat:'forex',hot:true,src:'ForexFactory'},
+  {time:'10:00',curr:'USD',event:'ISM Manufacturing PMI',impact:'high',actual:'49.8',forecast:'50.2',actual_dir:'neg',summary:'PMI thấp hơn dự báo — lo ngại suy thoái',cat:'forex',hot:true,src:'ForexFactory'},
+  {time:'14:00',curr:'EUR',event:'ECB Interest Rate Decision',impact:'high',actual:'3.50%',forecast:'3.50%',actual_dir:'neu',summary:'ECB giữ nguyên — EUR/USD ổn định tại vùng OP',cat:'forex',hot:false,src:'ForexFactory'},
+  {time:'16:30',curr:'GBP',event:'UK CPI (YoY)',impact:'high',actual:'2.3%',forecast:'2.1%',actual_dir:'pos',summary:'Lạm phát UK cao hơn → BoE có thể giữ lãi suất cao hơn',cat:'forex',hot:true,src:'ForexFactory'},
+  {time:'09:00',curr:'BTC',event:'Bitcoin ETF Flows',impact:'med',actual:'+$380M',forecast:'—',actual_dir:'pos',summary:'Dòng tiền ETF tích cực — BTC tăng nhẹ',cat:'crypto',hot:false,src:'CoinDesk'},
+  {time:'Sáng',curr:'VNĐ',event:'VN-Index Weekly Close',impact:'med',actual:'1,287',forecast:'1,290',actual_dir:'neg',summary:'VN-Index điều chỉnh nhẹ · HPG giữ support',cat:'vn',hot:false,src:'CafeF'},
+  {time:'—',curr:'JPY',event:'BoJ Rate Decision',impact:'high',actual:'0.50%',forecast:'0.50%',actual_dir:'neu',summary:'BoJ giữ nguyên · USD/JPY bám trên OP Daily',cat:'forex',hot:false,src:'ForexFactory'},
+  {time:'—',curr:'USD',event:'FOMC Meeting Minutes',impact:'high',actual:'—',forecast:'Hawkish',actual_dir:'neu',summary:'Biên bản họp FOMC sẽ phát lúc 14:00 ET · Theo dõi sát',cat:'forex',hot:true,src:'ForexFactory'},
+];
+
+const NEWS_FEEDS=[
+  {url:'https://www.fxstreet.com/rss/news',cat:'forex',src:'FXStreet'},
+  {url:'https://www.coindesk.com/arc/outboundfeeds/rss/',cat:'crypto',src:'CoinDesk'},
+  {url:'https://cafef.vn/thi-truong-chung-khoan.rss',cat:'vn',src:'CafeF'},
+];
+
+async function loadNews(){
+  if(NEWS_LOADING)return;NEWS_LOADING=true;
+  const el=document.getElementById('newsList');
+  if(el)el.innerHTML=`<div class="news-ai-loading"><div class="news-ai-spin"></div>Đang tải từ RSS feeds...</div>`;
+  try{
+    const res=await Promise.allSettled(NEWS_FEEDS.map(f=>fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(f.url)}&count=10`,{signal:AbortSignal.timeout(9000)}).then(r=>r.json()).then(d=>{if(d.status!=='ok'||!Array.isArray(d.items))throw 0;return d.items.map(i=>({time:new Date(i.pubDate).toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'}),curr:f.cat==='crypto'?'BTC':'USD',event:i.title,impact:impactLevel(i.title),actual:'—',forecast:'—',actual_dir:'neu',summary:stripH(i.description).slice(0,120),cat:catOf(f.src,i.title),hot:/surge|plunge|breaking|crash/i.test(i.title),src:f.src,ts:new Date(i.pubDate).getTime()}));})));
+    let m=[];res.forEach(r=>{if(r.status==='fulfilled')m=m.concat(r.value);});
+    if(!m.length)throw 0;
+    m.sort((a,b)=>(b.ts||0)-(a.ts||0));
+    NEWS=m.slice(0,20);renderNews();toast('📰 Cập nhật tin tức xong!');
+  }catch(e){NEWS=FF_FALLBACK.map((n,i)=>({...n,ts:Date.now()-i*3600000}));renderNews();toast('📰 Dùng tin mẫu',false);}
+  NEWS_LOADING=false;STATE.newsLoaded=true;
+}
+
+function renderNews(){
+  const el=document.getElementById('newsList');if(!el)return;
+  let d=NEWS;
+  if(NEWS_FILTER==='high')d=d.filter(n=>n.impact==='high');
+  else if(NEWS_FILTER!=='all')d=d.filter(n=>n.cat===NEWS_FILTER);
+  if(!d.length){el.innerHTML=`<div style="text-align:center;padding:20px;font-size:.7rem;color:var(--t3)">Không có tin theo bộ lọc này.</div>`;return;}
+  el.innerHTML=`<div class="ff-news-hdr"><div><div class="ff-news-title">📅 Lịch Kinh Tế & Tin Tức</div><div class="ff-news-src">FOREXFACTORY · RSS REALTIME · AI IMPACT SCORE</div></div><div style="font-size:.48rem;color:var(--t3);font-family:var(--ff-mono)">${d.length} sự kiện</div></div>
+  <div style="overflow-x:auto"><table class="ff-table"><thead><tr><th>⏰ Giờ</th><th>🌍 Đồng</th><th>📌 Sự Kiện</th><th>Tác động</th><th>Thực tế</th><th>Dự báo</th></tr></thead><tbody>
+  ${d.map(n=>`<tr>
+    <td class="ff-time-cell">${n.time||'—'}</td>
+    <td><span class="ff-curr">${n.curr||'—'}</span></td>
+    <td><div class="ff-event">${n.hot?'🔥 ':''}<span class="ff-tag ${n.cat}">${n.cat.toUpperCase()}</span> ${n.event}</div>${n.summary?`<div class="ff-event-sub">${n.summary}</div>`:''}</td>
+    <td><span class="ff-impact ${n.impact}"></span> <span style="font-size:.52rem;color:${n.impact==='high'?'#f87171':n.impact==='med'?'#f59e0b':'var(--t3)'}">${n.impact==='high'?'Cao':n.impact==='med'?'TB':'Thấp'}</span></td>
+    <td class="ff-actual ${n.actual_dir||'neu'}">${n.actual||'—'}</td>
+    <td class="ff-fore">${n.forecast||'—'}</td>
+  </tr>`).join('')}
+  </tbody></table></div>`;
+}
+function filterNews(btn,f){document.querySelectorAll('#p-news .filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');NEWS_FILTER=f;renderNews();}
+
+/* ═══ REVIEWS ═══ */
+const REVIEWS=[
+  {name:'Hoàng Minh T.',avatar:'🧑',meta:'Trader · TP.HCM · 3 tháng',stars:5,verified:true,text:'IF AI Tab riêng quá xịn! Chart có full indicator, star hiện ngay dưới chart. Không cần nhìn đâu khác nữa.',result:'🏆 +18.4% trong 3 tháng'},
+  {name:'Nguyễn Phú V.',avatar:'👨‍💼',meta:'Swing Trader · Hà Nội · 5 tháng',stars:5,verified:true,text:'BB Squeeze + ADX tăng là combo cực mạnh. Tab IFAI hiện sao ⭐⭐⭐ là biết ngay vào lệnh.',result:'📈 +29.7% tích lũy'},
+  {name:'Lê Thị H.',avatar:'👩‍💻',meta:'Trader mới · Đà Nẵng · 2 tháng',stars:5,verified:true,text:'Free tab HA + OP đơn giản dễ hiểu. Ref mở thêm tab IFAI với chart đầy đủ, ngon hơn nhiều.',result:'✅ Không còn cháy tài khoản'},
+  {name:'Trần Quốc B.',avatar:'🧔',meta:'Experienced · Cần Thơ · 7 tháng',stars:5,verified:true,text:'Ngôi sao hiện thẳng trên chart IFAI khi 5–6 chỉ số hội tụ. Tỉ lệ thắng cao vô địch.',result:'💰 +52% trong 7 tháng'},
+  {name:'Phạm Văn K.',avatar:'👦',meta:'Crypto Trader · Bình Dương · 4 tháng',stars:5,verified:true,text:'Nến Shooting Star tại BB Upper của ETH, star ⭐⭐ hiện trên chart IFAI, mình SELL ngay.',result:'🚀 +41% từ crypto'},
+  {name:'Vũ Thị L.',avatar:'👩',meta:'Part-time · Long An · 6 tháng',stars:5,verified:true,text:'Giao diện v6 điện thoại quá đẹp! 2 tab rõ ràng, Free xem HA, Ref xem IF AI. Logic cực kỳ.',result:'⏱️ Passive income +22%'},
+];
+function renderReviews(){
+  const el=document.getElementById('reviewsGrid');if(!el)return;
+  el.innerHTML=REVIEWS.map(r=>`<div class="review-card"><div class="review-header"><div class="review-avatar">${r.avatar}</div><div class="review-info"><div class="review-name">${r.name}</div><div class="review-meta">${r.meta}</div>${r.verified?'<span class="review-badge-verified">✓ Verified</span>':''}</div><div class="review-stars">${Array(5).fill(0).map((_,i)=>`<span class="star" style="${i<r.stars?'':'opacity:.2'}">★</span>`).join('')}</div></div><div class="review-text">"${r.text}"</div><div class="review-result">${r.result}</div></div>`).join('');
+}
+
+/* ═══ UI HELPERS ═══ */
+function openModal(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
+document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id);}));
+function toggleSidebar(){const sb=document.getElementById('sidebar'),ov=document.getElementById('sidebarOverlay');const o=sb.classList.toggle('mob-open');ov.classList.toggle('show',o);}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('mob-open');document.getElementById('sidebarOverlay').classList.remove('show');}
+function toast(msg,e=false){const t=document.createElement('div');t.className='toast'+(e?' err':'');t.textContent=msg;document.getElementById('toasts').appendChild(t);setTimeout(()=>t.remove(),3000);}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal.open').forEach(m=>closeModal(m.id));closeSidebar();}});
+
+function showPanel(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  const panel=document.getElementById('p-'+id);if(!panel)return;
+  panel.classList.add('active');
+  document.querySelectorAll('.sb-item').forEach(i=>i.classList.remove('active'));
+  const clicked=[...document.querySelectorAll('.sb-item')].find(i=>i.getAttribute('onclick')&&i.getAttribute('onclick').includes("'"+id+"'"));
+  if(clicked)clicked.classList.add('active');
+  STATE.currentPanel=id;
+  if(id==='dashboard'&&!STATE.chartLoaded){loadChart(STATE.currentSym);STATE.chartLoaded=true;}
+  if(id==='news'&&!STATE.newsLoaded)loadNews();
+  if(id==='reviews')renderReviews();
+  if(window.innerWidth<900)closeSidebar();
+}
+
+function toggleCT(hdr){
+  const body=document.getElementById('ctBody');const tog=document.getElementById('ctToggle');
+  const open=body.classList.toggle('open');
+  tog.classList.toggle('open',open);
+}
+
+/* ═══ INTRO ═══ */
+function buildStars(){
+  const c=document.getElementById('introStars');
+  for(let i=0;i<100;i++){const s=document.createElement('div');s.className='intro-star';const sz=Math.random()*2+.5;s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--dur:${2+Math.random()*4}s;--delay:${Math.random()*3}s;--op:${.4+Math.random()*.6};`;c.appendChild(s);}
+}
+function enterApp(){
+  const intro=document.getElementById('introScreen'),app=document.getElementById('mainApp'),zalo=document.getElementById('zaloFloat');
+  intro.style.transition='opacity .6s,transform .6s';intro.style.opacity='0';intro.style.transform='scale(1.03)';
+  setTimeout(()=>{
+    intro.style.display='none';app.style.display='flex';app.style.flexDirection='row';if(zalo)zalo.style.display='flex';
+    document.body.style.overflow='';
+    if(STATE.isRef)unlockContent();
+    setTimeout(async()=>{
+      loadChart(STATE.currentSym);STATE.chartLoaded=true;
+      renderTicker();renderPriceStrip();renderCallGroup();
+      NEWS=FF_FALLBACK;renderNews();STATE.newsLoaded=false;
+      await fetchPrices();
+      await loadKlines(STATE.currentSym);
+      renderIFAI();
+    },100);
+  },600);
+}
+setTimeout(()=>{if(document.getElementById('introScreen').style.display!=='none')enterApp();},5500);
+setTimeout(()=>{const b=document.getElementById('zaloBubble');if(b){b.style.transition='opacity .5s';setTimeout(()=>{b.style.opacity='0';setTimeout(()=>b.style.display='none',500);},6000);}},2000);
+
+/* ═══ INIT ═══ */
+buildStars();checkStoredRef();
+setInterval(async()=>{await fetchPrices();if(STATE.currentPanel==='dashboard')renderIFAI();},60000);
+</script>
+</body>
+</html>.sidebar{width:210px;flex-shrink:0;background:var(--s1);border-right:1px solid rgba(201,151,42,.09);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:200;transition:transform .25s}
 .sb-logo{padding:12px 12px 9px;border-bottom:1px solid rgba(201,151,42,.07);cursor:pointer}
 .sb-logo-wrap{display:flex;align-items:center;gap:9px}
 .sb-logo-icon{font-family:var(--ff-head);font-weight:900;font-size:1rem;background:linear-gradient(135deg,#fff,var(--g0) 40%,var(--g3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
